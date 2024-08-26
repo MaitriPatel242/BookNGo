@@ -59,8 +59,8 @@ export default function Hero() {
 
     const Explore = ({image, country}) =>{
         return(
-            <div className="relative group overflow-hidden rounded-[18px] shadow-lg">
-                <img src={image} alt={country} className="w-full h-[350px] object-cover rounded-[18px] transition-transform duration-700 ease-in-out group-hover:scale-125"/>
+            <div className="relative group overflow-hidden rounded-[10px] shadow-lg">
+                <img src={image} alt={country} className="w-full h-[350px] object-cover rounded-[10px] transition-transform duration-700 ease-in-out group-hover:scale-125"/>
                 <span className="bg-orange rounded-lg px-5 text-white text-xs absolute top-5 right-5 uppercase font-bold leading-8 whitespace-pre">3 Tours</span>
                 <div className="absolute bottom-0 w-full bg-black bg-opacity-50 py-5 flex flex-col items-center justify-center transition-all duration-300 group-hover:bg-opacity-100">
                     <p className="text-green text-xl font-bold flex flex-col">Travel to <span className="text-white text-2xl group-hover:text-gray-800">{country}</span></p>
