@@ -2,12 +2,13 @@ import { MdOutlineParagliding, MdSearch } from "react-icons/md";
 import { FaBiking, FaPeopleCarry, FaPlaneSlash, FaUsers } from "react-icons/fa";
 import { RiPlanetLine } from "react-icons/ri";
 import { AiOutlineCalendar } from "react-icons/ai";
-import { IoMdOptions } from "react-icons/io";
+import { IoMdArrowForward, IoMdOptions } from "react-icons/io";
 import { TbBeach } from "react-icons/tb";
 import { LiaWarehouseSolid } from "react-icons/lia";
 import Carousel from "react-multi-carousel";
 import 'react-multi-carousel/lib/styles.css';
 import { useState } from "react";
+import {IoArrowForward} from "react-icons/io5"
 
 const type = [
     { title: "Adventure", icon: <FaPlaneSlash /> },
@@ -16,9 +17,7 @@ const type = [
     { title: "Beach", icon: <TbBeach /> },
     { title: "Adventure", icon: <LiaWarehouseSolid /> },
     { title: "Discovery", icon: <RiPlanetLine /> },
-
 ];
-
 
 const responsives = {
     superLargeDesktop: {
@@ -42,7 +41,7 @@ const responsives = {
         },
         items: 3,
     },
-    module: {
+    mobile: {
         breakpoint: {
             max: 464,
             min: 0,
@@ -52,8 +51,28 @@ const responsives = {
 };
 
 export default function Hero() {
-
     const [currentSlide, setCurrentSlide] = useState(0);
+    
+    const handleAfterChange =(_, state)  => {
+        setCurrentSlide(state.currentSlide)
+    }
+
+    const Explore = ({image, country}) =>{
+        return(
+            <div className="relative group overflow-hidden rounded-[18px] shadow-lg">
+                <img src={image} alt={country} className="w-full h-[350px] object-cover rounded-[18px] transition-transform duration-700 ease-in-out group-hover:scale-125"/>
+                <span className="bg-orange rounded-lg px-5 text-white text-xs absolute top-5 right-5 uppercase font-bold leading-8 whitespace-pre">3 Tours</span>
+                <div className="absolute bottom-0 w-full bg-black bg-opacity-50 py-5 flex flex-col items-center justify-center transition-all duration-300 group-hover:bg-opacity-100">
+                    <p className="text-green text-xl font-bold flex flex-col">Travel to <span className="text-white text-2xl group-hover:text-gray-800">{country}</span></p>
+                    <div className="absolute -top-5 right-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                        <button className="bg-orange text-white p-2 rounded-full">
+                            <IoArrowForward className="text-xl"></IoArrowForward>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        )
+    }
     return (
         <div>
             <section className="relative bg-black lg:h-[80vh]" data-aos="fade-down" data-aos-delay="300" data-aos-duration="3000">
@@ -120,14 +139,16 @@ export default function Hero() {
                     <p className="text-white font-semibold lg:text-3xl text-xl lg:py-0 py-8">Or browse the selected type</p>
                 </div>
             </section>
+
             <section className="bg-[#F3F8F6] bg-[url('/bg-shape-01.jpg')]">
                 <div className="relative z-10 max-w-[1320px] px-6 mx-auto -mt-24">
-                    <Carousel 
-                        responsive={responsives} 
-                        infinite 
-                        autoPlay={true} 
+                    <Carousel
+                        responsive={responsives}
+                        infinite
+                        afterChange={handleAfterChange}    
+                        autoPlay={true}
                         itemClass="px-2"
-                        afterChange={(previousSlide, { currentSlide }) => setCurrentSlide(currentSlide)}
+                        // afterChange={(previousSlide, { currentSlide }) => setCurrentSlide(currentSlide)}
                     >
                         {type.map((item, index) => (
                             <div key={index} className="group">
@@ -159,6 +180,32 @@ export default function Hero() {
                             </div>
                         ))}
                     </Carousel>
+                </div>
+
+                <div className="max-w-[1320px] mx-auto pt-24">
+                    <div className="py-16">
+                        <div className="flex flex-col items-center">
+                            <div className="relative w-fit px-8 py-2 flex items-center justify-center">
+                                <span className="bg-green rounded-md opacity-15 absolute w-full h-full z-10"></span>
+                                <h6 className="text-green relative font-semibold">Popular activities</h6>
+                            </div>
+                            <h3 className="lg:text-5xl text-3xl text-center font-bold pb-8 py-4">Explore Real Adventure</h3>
+                        </div>
+
+                        <div className="py-8">
+                            <Carousel
+                                responsive={responsives}
+                                infinite
+                                autoPlay={true}
+                                itemClass="px-2 pb-6"
+                            >
+                                <Explore country="United Kingdom" image="/image-01.jpg"/>
+                                <Explore country="France" image="/image-02.jpg"/>
+                                <Explore country="Singapore" image="/image-03.jpg"/>
+                                <Explore country="Thailand" image="/image-04.jpg"/>
+                            </Carousel>
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>
