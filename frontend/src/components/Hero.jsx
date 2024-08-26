@@ -118,7 +118,7 @@ export default function Hero() {
                         Checkout Beautiful Places Around The World.
                     </p>
                     <div className="bg-white p-6 rounded-lg shadow-lg lg:flex items-center justify-between w-full">
-                        <div className="flex items-center w-full lg:border-r border-b py-2 pr-4 mr-4">
+                        <div className="flex items-center w-full lg:py-2 pr-4 mr-4">
                             <MdOutlineParagliding className="text-green text-3xl mr-2" />
                             <div className="flex flex-col w-full">
                                 <p className="text-gray-600 text-sm">
@@ -129,7 +129,7 @@ export default function Hero() {
                                 </select>
                             </div>
                         </div>
-                        <div className="flex items-center w-full lg:border-r border-b py-2 pr-4 mr-4">
+                        <div className="flex items-center w-full lg:py-2 pr-4 mr-4">
                             <FaPeopleCarry className="text-green text-3xl mr-2" />
                             <div className="flex flex-col w-full">
                                 <p className="text-gray-600 text-sm">
@@ -140,7 +140,7 @@ export default function Hero() {
                                 </select>
                             </div>
                         </div>
-                        <div className="flex items-center w-full lg:border-r border-b py-2 pr-4 mr-4">
+                        <div className="flex items-center w-full lg:py-2 pr-4 mr-4">
                             <AiOutlineCalendar className="text-green text-3xl mr-2" />
                             <div className="flex flex-col w-full">
                                 <p className="text-gray-600 text-sm">
@@ -149,7 +149,7 @@ export default function Hero() {
                                 <input type="date" className="focus:outline-none" />
                             </div>
                         </div>
-                        <div className="flex items-center w-full lg:border-r border-b py-2 pr-4 mr-4">
+                        <div className="flex items-center w-full lg:py-2 pr-4 mr-4">
                             <FaUsers className="text-green text-3xl mr-2" />
                             <div className="flex flex-col w-full">
                                 <p className="text-gray-600 text-sm">
