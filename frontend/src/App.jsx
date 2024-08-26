@@ -1,4 +1,5 @@
 import Hero from "./components/Hero";
+import Popular from "./components/Popular";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { useEffect } from "react";
@@ -16,7 +17,7 @@ export default function App() {
     <>
       <Header />
       <Hero />
-      <Footer />
+      <Popular />
     </>
   )
 }

@@ -8,7 +8,7 @@ import { LiaWarehouseSolid } from "react-icons/lia";
 import Carousel from "react-multi-carousel";
 import 'react-multi-carousel/lib/styles.css';
 import { useState } from "react";
-import {IoArrowForward} from "react-icons/io5"
+import { IoArrowForward } from "react-icons/io5"
 
 const type = [
     { title: "Adventure", icon: <FaPlaneSlash /> },
@@ -49,21 +49,51 @@ const responsives = {
         items: 1,
     }
 };
+const responsive = {
+    superLargeDesktop: {
+        breakpoint: {
+            max: 4000,
+            min: 3000,
+        },
+        items: 4,
+    },
+    desktop: {
+        breakpoint: {
+            max: 3000,
+            min: 1024,
+        },
+        items: 4,
+    },
+    tablet: {
+        breakpoint: {
+            max: 1024,
+            min: 464,
+        },
+        items: 2,
+    },
+    mobile: {
+        breakpoint: {
+            max: 464,
+            min: 0,
+        },
+        items: 1,
+    }
+};
 
 export default function Hero() {
     const [currentSlide, setCurrentSlide] = useState(0);
-    
-    const handleAfterChange =(_, state)  => {
+
+    const handleAfterChange = (_, state) => {
         setCurrentSlide(state.currentSlide)
     }
 
-    const Explore = ({image, country}) =>{
-        return(
+    const Explore = ({ image, country }) => {
+        return (
             <div className="relative group overflow-hidden rounded-[10px] shadow-lg">
-                <img src={image} alt={country} className="w-full h-[350px] object-cover rounded-[10px] transition-transform duration-700 ease-in-out group-hover:scale-125"/>
+                <img src={image} alt={country} className="w-full h-[350px] object-cover rounded-[10px] transition-transform duration-700 ease-in-out group-hover:scale-125" />
                 <span className="bg-orange rounded-lg px-5 text-white text-xs absolute top-5 right-5 uppercase font-bold leading-8 whitespace-pre">3 Tours</span>
                 <div className="absolute bottom-0 w-full bg-black bg-opacity-50 py-5 flex flex-col items-center justify-center transition-all duration-300 group-hover:bg-opacity-100">
-                    <p className="text-green text-xl font-bold flex flex-col">Travel to <span className="text-white text-2xl group-hover:text-gray-800">{country}</span></p>
+                    <p className="text-green text-xl font-bold text-center flex flex-col">Travel to <span className="text-white text-2xl text-center group-hover:text-white-800">{country}</span></p>
                     <div className="absolute -top-5 right-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                         <button className="bg-orange text-white p-2 rounded-full">
                             <IoArrowForward className="text-xl"></IoArrowForward>
@@ -140,15 +170,15 @@ export default function Hero() {
                 </div>
             </section>
 
-            <section className="bg-[#F3F8F6] bg-[url('/bg-shape-01.jpg')]">
-                <div className="relative z-10 max-w-[1320px] px-6 mx-auto -mt-24">
+            <section className="bg-[#F3F8F6] bg-[url('/bg-shape-01.png')] bg-no-repeat align-middle">
+                <div className="relative z-10 max-w-[1320px] px-6 mx-auto -mt-16">
                     <Carousel
                         responsive={responsives}
                         infinite
-                        afterChange={handleAfterChange}    
+                        afterChange={handleAfterChange}
                         autoPlay={true}
                         itemClass="px-2"
-                        // afterChange={(previousSlide, { currentSlide }) => setCurrentSlide(currentSlide)}
+                    // afterChange={(previousSlide, { currentSlide }) => setCurrentSlide(currentSlide)}
                     >
                         {type.map((item, index) => (
                             <div key={index} className="group">
@@ -194,15 +224,15 @@ export default function Hero() {
 
                         <div className="py-8">
                             <Carousel
-                                responsive={responsives}
+                                responsive={responsive}
                                 infinite
                                 autoPlay={true}
                                 itemClass="px-2 pb-6"
                             >
-                                <Explore country="United Kingdom" image="/image-01.jpg"/>
-                                <Explore country="France" image="/image-02.jpg"/>
-                                <Explore country="Singapore" image="/image-03.jpg"/>
-                                <Explore country="Thailand" image="/image-04.jpg"/>
+                                <Explore country="United Kingdom" image="/image-01.jpg" />
+                                <Explore country="France" image="/image-02.jpg" />
+                                <Explore country="Singapore" image="/image-03.jpg" />
+                                <Explore country="Thailand" image="/image-04.jpg" />
                             </Carousel>
                         </div>
                     </div>
