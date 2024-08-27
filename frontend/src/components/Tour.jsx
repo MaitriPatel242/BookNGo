@@ -59,11 +59,11 @@ function Tour() {
             </section>
 
             <section className="container mx-auto py-12" data-aos="Fade-down">
-                <div className="relative w-fit px-8 py-2 flex items-center justify-center">
-                    <span className="bg-green rounded-md opacity-15 absolute w-full h-full z-10"></span>
-                    <h6 className="bg-[#63AB4544] text-green w-full  rounded-md px-5 py-2 font-bold">Featured Tour</h6>
-                    <h3 className="lg:text-5xl text-3xl font-bold pb-8 py-4">Amazing tour places aroud the world</h3>
-                    <div></div>
+                <div className="w-full py-24 lg:px-12 px-3">
+                    <div className="relative w-fit mx-auto py-2 flex itens-center justify-center">
+                        <h6 className="bg-[#63AB4526] text-green w-full  rounded-md px-5 py-2 font-bold">Featured Tour</h6>
+                    </div>
+                    <h3 className="lg:text-5xl lg:w-1/2 mx-auto text-3xl font-bold pb-8 py-4 text-center">Amazing tour places around the world.</h3>
                 </div>
             </section>
         </div>

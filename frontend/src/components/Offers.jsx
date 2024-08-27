@@ -56,12 +56,12 @@ const offers = [
     },
     {
         icon: <GiWoodenPier />,
-        image: '/tour-11.jpg',
+        image: '/tour-11-500x360.jpg',
         text: 'Adventure and Climbing',
     },
     {
         icon: <FaBiking />,
-        image: '/tour-2.jpg',
+        image: '/tour-2-500x360.jpg',
         text: 'Mountain Climbing',
     },
 ];
@@ -83,7 +83,7 @@ export default function Offers() {
                 <div className="relative z-10 px-6 py-8">
                     <Carousel responsive={responsive} autoPlay={true} itemClass="pb-6 px-2">
                         {offers.map((offer, index) => (
-                            <div key={offer.image} className="relative group rounded-lg p-8"
+                            <div key={offer.image} className="relative group h-80 rounded-lg p-8"
                                 style={{
                                     backgroundImage: hoveredIndex === index ?
                                         `url(${offer.image})` :
