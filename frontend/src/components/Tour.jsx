@@ -2,6 +2,7 @@
 import Carousel from "react-multi-carousel";
 import 'react-multi-carousel/lib/styles.css';
 import { BsPlay } from "react-icons/bs";
+import Accordion from "./Accordion";
 
 const responsive = {
     superLargeDesktop: {
@@ -34,7 +35,7 @@ const responsive = {
     }
 };
 
-export default function Tour() {
+function Tour() {
     return (
         <div>
             <section>
@@ -48,13 +49,25 @@ export default function Tour() {
                         </div>
                     </div>
                     <div className="w-full lg:w-1/2 py-24 lg:px-12 px-3">
-                        <div className="relative w-fit py-2 flex itens-center justify-start">
+                        <div className="relative w-fit py-2 flex items-center justify-start">
                             <h6 className="bg-[#63AB4544] text-green w-full  rounded-md px-5 py-2 font-bold">Availibility</h6>
                         </div>
                         <h3 className="lg:text-5xl text-3xl font-bold pb-8 py-4">Enjoy Real Adventure</h3>
+                        <Accordion />
                     </div>
                 </div>
             </section>
+
+            <section className="container mx-auto py-12" data-aos="Fade-down">
+                <div className="relative w-fit px-8 py-2 flex items-center justify-center">
+                    <span className="bg-green rounded-md opacity-15 absolute w-full h-full z-10"></span>
+                    <h6 className="bg-[#63AB4544] text-green w-full  rounded-md px-5 py-2 font-bold">Featured Tour</h6>
+                    <h3 className="lg:text-5xl text-3xl font-bold pb-8 py-4">Amazing tour places aroud the world</h3>
+                    <div></div>
+                </div>
+            </section>
         </div>
-    )
+    );
 }
+
+export default Tour;
