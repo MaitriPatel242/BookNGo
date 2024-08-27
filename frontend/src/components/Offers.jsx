@@ -80,7 +80,7 @@ export default function Offers() {
                         Feel real adventure and very close to nature
                     </h3>
                 </div>
-                <div className="py-8">
+                <div className="relative z-10 px-6 py-8">
                     <Carousel responsive={responsive} autoPlay={true} itemClass="pb-6 px-2">
                         {offers.map((offer, index) => (
                             <div key={offer.image} className="relative group rounded-lg p-8"

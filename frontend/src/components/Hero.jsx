@@ -222,7 +222,7 @@ export default function Hero() {
                             <h3 className="lg:text-5xl text-3xl text-center font-bold pb-8 py-4">Explore Real Adventure</h3>
                         </div>
 
-                        <div className="py-8">
+                        <div className="relative z-10 px-6 py-8">
                             <Carousel
                                 responsive={responsive}
                                 infinite

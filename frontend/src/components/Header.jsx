@@ -13,7 +13,7 @@ export default function Header() {
     return (
         <nav className="w-full h-24 flex flex-col justify-center items-center sticky top-0 z-50 bg-[#1D231F]">
             <div className="conatiner mx-auto lg:px-3 w-full">
-                <div className="lg:w-full w-11/12 mx-auto h-full flex lg:justify-center items-center gap-16">
+                <div className="lg:w-full w-11/12 mx-auto h-full flex lg:justify-around justify-between items-center gap-16">
                     <div className="flex flex-col gap-y-4">
                         <div className="flex items-center gap-x-2">
                             <img src="/logo.png" alt="" className="w-36" />

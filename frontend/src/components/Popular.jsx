@@ -72,7 +72,7 @@ export default function Popular() {
             <Section image="/image-15.jpg" text="We are the most funning company about travel and adventure" title="Welcome to Gowilds">
                 <div className="flex flex-wrap gap-4">
                     {categories.map((category, index) => (
-                        <div key={category.text} className="w-full sm:w-1/2 md:w-1/3">
+                        <div key={category.text} className=" sm:w-1/2 md:w-1/3">
                             <Card text={category.text} tilt={category.tilt} />
                         </div>
                     ))}
