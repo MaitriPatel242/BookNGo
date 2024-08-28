@@ -1,8 +1,9 @@
-
 import Carousel from "react-multi-carousel";
 import 'react-multi-carousel/lib/styles.css';
 import { BsPlay } from "react-icons/bs";
 import Accordion from "./Accordion";
+import { CiCamera, CiHeart } from "react-icons/ci";
+import { MdStar } from "react-icons/md";
 
 const responsive = {
     superLargeDesktop: {
@@ -34,6 +35,38 @@ const responsive = {
         items: 1,
     }
 };
+ 
+const Tours=({image,name})=>{
+    return(
+        <div>
+             <div>
+                <img src={image} alt=""/>
+                <div>
+                    <p>FEATURED</p>
+                    <button><CiHeart/></button>
+                </div>
+             </div>
+             <div>
+                <div></div>
+                <div>
+                    <div>
+                        <span>
+                            {[...Array.map((_,index)=>{
+                                <MdStar key={index}/>
+                            })]}
+                        </span>
+                        <span>
+                            <div>
+                                <CiCamera size={24}/>
+                                <button>5</button>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+             </div>
+        </div>
+    )
+}
 
 function Tour() {
     return (
@@ -48,6 +81,7 @@ function Tour() {
                             </button>
                         </div>
                     </div>
+
                     <div className="w-full lg:w-1/2 py-24 lg:px-12 px-3">
                         <div className="relative w-fit py-2 flex itens-center justify-start">
                             <h6 className="bg-[#63AB4526] text-green w-full  rounded-md px-5 py-2 font-bold">Availibility</h6>
@@ -65,7 +99,13 @@ function Tour() {
                     </div>
                     <h3 className="lg:text-5xl lg:w-1/2 mx-auto text-3xl font-bold pb-8 py-4 text-center">Amazing tour places around the world.</h3>
                 </div>
+              <div>
+                  <Carousel responsive={responsive} infinit autoplay={true} itemClass="px-2 pb-4" >
+                      </Tours>
+                  </Carousel>
+              </div>
             </section>
+
         </div>
     );
 }
