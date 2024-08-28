@@ -39,28 +39,51 @@ const responsive = {
 const Tours=({image,name})=>{
     return(
         <div>
-             <div>
-                <img src={image} alt=""/>
-                <div>
-                    <p>FEATURED</p>
-                    <button><CiHeart/></button>
+             <div className="relative overflow-hidden rounded-t-lg"> 
+                <img src={image} alt="" className="rounded-t-lg hoverTag"/>
+                <div className="absolute flex justify-between top-4 left-4 right-4">
+                    <p className="bg-[#14B0C3] rounded-md px-4 py-1 text-white text-sm">FEATURED</p>
+                    <button className="bg-[#00000066] p1-1 rounded-md">
+                        <CiHeart className="text-white text-xl"/>
+                        </button>
                 </div>
              </div>
-             <div>
-                <div></div>
-                <div>
-                    <div>
-                        <span>
+             <div className="border border-[#ebe6de] rounded-b-lg relative">
+                <div className="absolute w-full h-5 bg-white rounded-t-{20px}"></div>
+                <div  className="px-6">
+                    <div className="flex items-center gap-4 justify-between relative">
+                        <span className="flec justify-center">
                             {[...Array.map((_,index)=>{
-                                <MdStar key={index}/>
+                                <MdStar key={index} className="text-[#ffa801] text-xl"/>
                             })]}
                         </span>
-                        <span>
-                            <div>
+                        <span className="flex gap-2 shadow px-4 py-1 absolute -top-8 right-0 z-10 bg-white rounded-lg">
+                            <div className="relative">
                                 <CiCamera size={24}/>
-                                <button>5</button>
+                                <button className="bg-green text-xs rounded-full text-white w-4 h-4 flex items-center absolute top-0 right-0">5</button>
                             </div>
+                            <IoVideocanOutLine size={24}/>
                         </span>
+                    </div>
+                    <h4 className="text-xl font-semibold py-2 hover:text-green">{name}</h4>
+                    <span className="flex items-center gap-2">
+                        <MdLocationPin className="text-green text-xl"/>
+                        <p className="text-[#757783] text-sm">Main Street,Brooklyn,NY</p>
+                    </span>
+                    <span className="text-[#757783] flex py-4">
+                        <LiaDollarSignSolid className="text-green text-xl"/> From
+                        <p className="text-green">$59.00</p>
+                    </span>
+                    <div className="flex justify-between border-t py-2 "> 
+                        <div className="flex items-center gap-4">
+                            <span className="flex items-center gap-1">
+                                <WiTime3 className="text-green"/>10 days
+                            </span>
+                            <span className="flex items-center gap-1">
+                                <MdPeopleOutline className="text-green"/>50
+                            </span>
+                        </div>
+                       <a href="#" className="flex items-center gap-2 text-sm mt-2">Explore <MdArrowRightAlt/></a>
                     </div>
                 </div>
              </div>
@@ -101,7 +124,12 @@ function Tour() {
                 </div>
               <div>
                   <Carousel responsive={responsive} infinit autoplay={true} itemClass="px-2 pb-4" >
-                      </Tours>
+                      <Tours image="tour-8-500x360.jpg" name="Discovery Island Kayak Tour"/>
+                      <Tours image="tour-6-500x360.jpg" name="Beautiful Floating Villa"/>
+                      <Tours image="tour-2-500x360.jpg" name="Yucation Penisula & Caribbean"/>
+                      <Tours image="tour-9-500x360.jpg" name="Java & Bali One Life Adventures"/>
+                      <Tours image="tour-1-500x360.jpg" name="Boathouse Neighbourhood"/>
+                    
                   </Carousel>
               </div>
             </section>
