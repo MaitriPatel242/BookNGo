@@ -73,7 +73,7 @@ export default function Blog() {
                     <button className="lg:block hidden bg-green text-white rounded-lg text-lg shadow py-4 px-8 font-bold">View More</button>
                 </div>
                 <div>
-                    <div className="flex justify-between items-center">
+                    <div className="flex flex-wrap justify-between items-center">
                         <Blogs text="Things to see and do when visiting Japan" title="Adventure" image="/blog-01-500x360.jpg" />
                         <Blogs text="A place where start new life with adventure travel" title="City Tours" image="/blog-02-500x360.jpg" />
                         <div className='flex flex-col'>
