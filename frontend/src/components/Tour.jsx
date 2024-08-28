@@ -57,19 +57,19 @@ const Tours = ({ image, name }) => {
                     </button>
                 </div>
             </div>
-            <div className="border border-[#ebe6de] rounded-b-lg relative">
-                <div className="absolute w-full h-5 bg-white rounded-t-[20px]"></div>
+            <div className="border bg-white border-[#ebe6de] rounded-lg relative -top-8">
+                <div className="absolute w-full h-5 bg-white rounded-t-[20px] "></div>
                 <div className="px-6">
-                    <div className="flex items-center gap-4 justify-between relative">
+                    <div className="flex items-center gap-4 justify-between relative pt-4">
                         <span className="flex justify-center">
                             {[...Array(5)].map((_, index) => (
                                 <MdStar key={index} className="text-[#ffa801] text-xl" />
                             ))}
                         </span>
-                        <span className="flex gap-2 shadow px-4 py-1 absolute -top-8 right-0 z-10 bg-white rounded-lg">
+                        <span className="flex gap-2 shadow px-4 py-1 absolute -top-4 right-0 z-10 bg-white rounded-lg">
                             <div className="relative">
                                 <CiCamera size={24} />
-                                <button className="bg-green text-xs rounded-full text-white w-4 h-4 flex items-center absolute top-0 right-0">5</button>
+                                <button className="bg-green text-xs rounded-full text-white w-4 h-4 flex items-center absolute -top-1 -right-1 p-1">5</button>
                             </div>
                             <IoVideocamOutline size={24} />
                         </span>

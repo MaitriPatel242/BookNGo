@@ -105,7 +105,7 @@ export default function Hero() {
     }
     return (
         <div>
-            <section className="relative bg-black lg:h-[80vh]" data-aos="fade-down" data-aos-delay="300" data-aos-duration="3000">
+            <section className="relative bg-black lg:h-[90vh]" data-aos="fade-down" data-aos-delay="300" data-aos-duration="2000">
                 <img src="/slider-1.jpg" alt="" className="absolute h-full w-full object-cover" />
                 <div className="flex flex-col justify-center items-center relative z-10 lg:h-full h-screen max-w-[1320px] px-6 lg:pt-0 pt-16 mx-auto">
                     <span className="lg:text-5xl text-3xl text-white text-center font-bold relative">
