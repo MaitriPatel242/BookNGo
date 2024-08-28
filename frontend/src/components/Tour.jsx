@@ -4,6 +4,15 @@ import { BsPlay } from "react-icons/bs";
 import Accordion from "./Accordion";
 import { CiCamera, CiHeart } from "react-icons/ci";
 import { MdStar } from "react-icons/md";
+import{
+    MdArrowRightAlt,
+    MdLocationPin,
+    MdPeopleOutline,
+    MdStar,
+}from 'react-icons/md'
+import { IoVideocanOutLine } from "react-icons/io5";
+import {LiaDollarSignSolid} from "react-icons/lia"
+import{WiTime3} from 'react-icons/wi'
 
 const responsive = {
     superLargeDesktop: {
