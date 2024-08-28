@@ -26,6 +26,7 @@ export default function App() {
       <Tour />
       <Explore />
       <Blog />
+      <Footer/>
     </>
   )
 }

@@ -11,7 +11,7 @@ const why_us = [
         icons: <TbReportMoney size={60} />
     },
     {
-        text: "Low price and friendly",
+        text: "Low price and ",
         icons: <FaPlaneSlash size={60} />
     },
 
