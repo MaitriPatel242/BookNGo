@@ -6,29 +6,36 @@ import Blog from "./components/Blog";
 import Offers from "./components/Offers";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import Tour1 from "./components/Tour1"
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 export default function App() {
   useEffect(() => {
     AOS.init({
       duration: 1500,
-    }), []
-  }
-  );
-  return (
-    <>
+    });
+  }, []); 
+
+  return (<>
+    <Router>
       <Header />
-      <Hero />
-      <Popular />
-      <Offers />
-      <Tour />
-      <Explore />
-      <Blog />
-      <Footer/>
-      <Tour1/>
+      <Routes>
+        <Route path="/" element={
+          <>
+            <Hero />
+            <Popular />
+            <Offers />
+            <Tour />
+            <Explore />
+            <Blog />
+            <Footer />
+          </>
+        } />
+        <Route path="/tour" element={<Tour />} />
+      </Routes>
+    </Router>
     </>
-  )
+  );
 }
