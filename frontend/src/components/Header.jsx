@@ -22,14 +22,11 @@ export default function Header() {
                         </div>
                     </div>
                     <ul className="flex items-center xl:gap-12 gap-x-4 max-lg:hidden">
-                        <NavLink to="/home" className="leading-normal no-underline text-white text-lg hover:text-green">
+                        <NavLink to="/" className="leading-normal no-underline text-white text-lg hover:text-green">
                             Home
                         </NavLink>
                         <NavLink to="/tours" className="leading-normal no-underline text-white text-lg hover:text-green">
                             Tours
-                        </NavLink>
-                        <NavLink to="/destination" className="leading-normal no-underline text-white text-lg hover:text-green">
-                            Destination
                         </NavLink>
                         <NavLink to="/news" className="leading-normal no-underline text-white text-lg hover:text-green">
                             News
@@ -63,14 +60,11 @@ export default function Header() {
                     <div className="lg:hidden w-full fixed top-24 bg-[#1D231F] text-white">
                         <div className="w-full flex flex-col items-baseline gap-4 p-4">
                             <ul className="w-full flex flex-col justify-center gap-y-4">
-                                <NavLink to="/home" className="leading-normal no-underline text-white text-lg hover:text-green">
+                                <NavLink to="/" className="leading-normal no-underline text-white text-lg hover:text-green">
                                     Home
                                 </NavLink>
                                 <NavLink to="/tours" className="leading-normal no-underline text-white text-lg hover:text-green">
                                     Tours
-                                </NavLink>
-                                <NavLink to="/destination" className="leading-normal no-underline text-white text-lg hover:text-green">
-                                    Destination
                                 </NavLink>
                                 <NavLink to="/news" className="leading-normal no-underline text-white text-lg hover:text-green">
                                     News

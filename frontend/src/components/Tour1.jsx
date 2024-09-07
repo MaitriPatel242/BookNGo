@@ -28,7 +28,8 @@ export default function Tour1() {
                 <div className="lg:2/3">
                     <div className="flex lg:flex-row flex-col justify-between py-4 pb-2 text-[#82828A]">
                         <span className="flex gap-2">
-                            <strong>{tourData.length}</strong> Tours
+                            <strong>{2}</strong> Tours
+                            {/* <strong>{tourData.length}</strong> Tours */}
                         </span>
                         <span className="flex gap-2">
                             <span className="flex gap-2 items-center">
@@ -43,9 +44,9 @@ export default function Tour1() {
                     </div>
                 </div>
                 <div>
-                    {currentPage.map((item,index)=>(
+                    {/* {currentPage.map((item,index)=>(
                         <ToursCard key={index} image={item.image} name={item.name} rating={item.rating} price={item.price}/>
-                    ))}
+                    ))} */}
                 </div>
             </section>
         </div>

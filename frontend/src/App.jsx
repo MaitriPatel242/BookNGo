@@ -1,5 +1,5 @@
 
-import Tour1 from "./components/Tour1";
+import Tour1 from "./components/tours/Tour1";
 import Header from "./components/Header";
 import Home from "./pages/Home"
 import Footer from "./components/Footer";

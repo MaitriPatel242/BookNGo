@@ -4,6 +4,7 @@ import { TbBeach } from "react-icons/tb";
 import { FaPlaneSlash, FaBiking } from "react-icons/fa";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { useState } from 'react';
 
 const type = [
   { title: "Adventure", icon: <FaPlaneSlash /> },
@@ -35,7 +36,7 @@ const responsive = {
 };
 
 export default function CardSlider() {
-  const [currentSlide, setCurrentSlide] = usestate(0)
+  const [currentSlide, setCurrentSlide] = useState(0)
   const handleAfterChange = (_, state) => {
     setCurrentSlide(state.currentSlide)
   }
