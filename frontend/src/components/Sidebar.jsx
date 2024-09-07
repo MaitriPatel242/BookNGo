@@ -26,6 +26,20 @@ title: "Discovery Island Kayak Tour",
 
 export default function Sidebar(){
     const [value,setValue]=useState([109,619])
+    const Card = () =>{
+        return(<>
+        {cardData.map((item)=>(
+            <div key={item.title} className="flex gap-6 border-b last:border-0 pt-4">
+                <img src={item.image} alt="" width={90} height={65} className="rounded-lg"/>
+                <span className="flex flex-col items-baseline gap-1">
+                    <Rating rating={item.rating}/>
+                    <h4 className="text-base">{item.title}</h4>
+                    <span className="text-gray-500 text-sm flex items-center gap-2">From <p className="text-green ">{item.price}.00</p> </span>
+                </span>
+            </div>
+        ))}
+        </>)
+    }
 
     return(
         <div className="flex flex-col gap-8 lg:w-1/3">
@@ -125,6 +139,20 @@ export default function Sidebar(){
                 <button className="w-full bg-green text-white rounded-lg h-16 my-4 flex justify-center items-center font-bold gap-2 text-center">
                 <MdSearch/>Search
                 </button>
+            </div>
+            <div className="rounded-lg border px-8 py-4">
+                <h3 className="text-xl font-semibold pb-4">Last Minute</h3>
+                <Card />
+            </div>
+            <div className="relative group overflow-hidden rounded-[10px] shadow-lg">
+                <img src="/tour-2.jpg" alt="" className="w-full h-[350px] object-cover rounded-[10px] transition-transform duration-700 ease-in-out group-hover:scale-125"/>
+                <span className="bg-orange rounded-lg px-5 text-white text-xs absolute top-5 right-5 uppercase font-bold leading-8 whitespace-pre">
+                    3 Tours
+                </span>
+                <div className="absolute bottom-0 w-full bg-black bg-opacity-50 py-5 flex flex-col items-center justify-center transition-all duration-300 group-hover:bg-white group-hover:bg-opacity-100">
+                    <p className="text-green text-xl font-bold flex flex-col"></p>
+                    Travel to{" "}
+                    <span className="text-white text-2xl group-hover:text-gray-800">United Kingdom</span></div>
             </div>
         </div>
     )
