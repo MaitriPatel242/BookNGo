@@ -1,6 +1,17 @@
+import { BsSortAlphaDown } from "react-icons/bs";
 import CardSlider from "./CardSlider";
 import Sidebar from "./Sidebar";
+import { useState } from "react";
 export default function Tour() {
+    const [sortAsc,setSortAsc] = useState(true)
+    const [sortCriterion,setSortCriterion] = useState('name')
+    const [currentPage,setcurrentPage] = useState(0);
+    
+    const handleSortChange = (event) =>{
+        setSortCriterion(event.target.value)
+        setSortAsc(true);
+    }
+
     return (
         <div>
             <section className="relative bg-black lg:h-[380px]"> 
@@ -11,9 +22,31 @@ export default function Tour() {
                 </div>
             </section>
             <CardSlider/>
-            <section>
+            <section className="lg:flex gap-8 max-w-[1320px] mx-auto my-24 px-3">
                 <Sidebar/>
-                <div></div>
+
+                <div className="lg:2/3">
+                    <div className="flex lg:flex-row flex-col justify-between py-4 pb-2 text-[#82828A]">
+                        <span className="flex gap-2">
+                            <strong>{tourData.length}</strong> Tours
+                        </span>
+                        <span className="flex gap-2">
+                            <span className="flex gap-2 items-center">
+                                Sort By <BsSortAlphaDown className="cursor-pointer" onClick={()=>setSortAsc(!sortAsc)}/>
+                            </span>
+                            <select value={sortCriterion} onChange={handleSortChange} className="w-32 cursor-pointer outline-none border rounded-sm">
+                                <option value="">Title</option>
+                                <option value="">Price</option>
+                                <option value="">Rating</option>
+                            </select>
+                        </span>
+                    </div>
+                </div>
+                <div>
+                    {currentPage.map((item,index)=>(
+                        <ToursCard key={index} image={item.image} name={item.name} rating={item.rating} price={item.price}/>
+                    ))}
+                </div>
             </section>
         </div>
     );
