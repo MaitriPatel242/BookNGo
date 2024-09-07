@@ -1,7 +1,6 @@
-
-import Tour1 from "./components/tours/Tour1";
-import Header from "./components/Header";
 import Home from "./pages/Home"
+import Tours from "./pages/Tours"
+import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 import { useEffect } from "react";
@@ -21,7 +20,7 @@ export default function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/tours" element={<Tour1 />} />
+        <Route path="/tours" element={<Tours />} />
       </Routes>
       <Footer />
     </Router>

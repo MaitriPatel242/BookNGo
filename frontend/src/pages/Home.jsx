@@ -1,9 +1,9 @@
-import Hero from "../components/home/Hero";
-import Popular from "../components/home/Popular";
-import Tour from "../components/home/Tour";
-import Explore from "../components/home/Explore";
-import Blog from "../components/home/Blog";
-import Offers from "../components/home/Offers";
+import Hero from "../components/Hero";
+import Popular from "../components/Popular";
+import Tour from "../components/Tour";
+import Explore from "../components/Explore";
+import Blog from "../components/Blog";
+import Offers from "../components/Offers";
 
 
 export default function Home() {
