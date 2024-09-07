@@ -1,6 +1,7 @@
 import Hero from "./components/Hero";
 import Popular from "./components/Popular";
 import Tour from "./components/Tour";
+import Tour1 from "./components/Tour1";
 import Explore from "./components/Explore";
 import Blog from "./components/Blog";
 import Offers from "./components/Offers";
@@ -33,7 +34,7 @@ export default function App() {
             <Footer />
           </>
         } />
-        <Route path="/tour" element={<Tour />} />
+        <Route path="/tours" element={<Tour1 />} />
       </Routes>
     </Router>
     </>

@@ -1,6 +1,6 @@
 import CardSlider from "./CardSlider";
 import Sidebar from "./Sidebar";
-export default function Tour() {
+export default function Tour1() {
     return (
         <div>
             <section className="relative bg-black lg:h-[380px]"> 
@@ -10,9 +10,9 @@ export default function Tour() {
                    <p className=" text-white text-center text-2xl my-2 ">People don't take,Trips take people</p>
                 </div>
             </section>
-            <CardSlider/>
+            <CardSlider />
             <section>
-                <Sidebar/>
+                <Sidebar />
                 <div></div>
             </section>
         </div>
