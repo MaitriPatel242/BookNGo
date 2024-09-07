@@ -106,7 +106,7 @@ function Tour() {
             <section>
                 <div className="max-w-[1320px] mx-auto lg:-mt-20 mb-10 flex flex-col lg:flex-row bg-gray-100 rounded-lg shadow-lg">
                     <div className="w-full relative lg:w-1/2 lg:mt-0 -mt-24 z-10 lg:px-0 px-3">
-                        <img src="/tour-2-550x590 (1).jpg" alt="" className="w-full h-64 lg:h-full rounded-l-md object-cover" />
+                        <img src="/tour-2-550x590.jpg" alt="" className="w-full h-64 lg:h-full rounded-l-md object-cover" />
                         <div className="absolute inset-0 flex items-center justify-center">
                             <button className="bg-green animate-pulse text-white rounded-full p-8">
                                 <BsPlay size={30} />

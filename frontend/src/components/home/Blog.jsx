@@ -87,7 +87,7 @@ export default function Blog() {
             <div className='relative top-20'>
                 <Carousel responsive={responsive} infinite autoPlay={true} itemClass='px-4'>
                     <div className='h-[298px] relative overflow-hidden'>
-                        <img src="/tour-2-550x590 (1).jpg" alt="" className='rounded-lg h-full object-cover hoverImg' />
+                        <img src="/tour-2-550x590.jpg" alt="" className='rounded-lg h-full object-cover hoverImg' />
                     </div>
                     <div className='h-[298px] relative overflow-hidden'>
                         <img src="/tour-5-550x590.jpg" alt="" className='rounded-lg h-full object-cover hoverImg' />

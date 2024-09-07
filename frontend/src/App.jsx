@@ -1,12 +1,9 @@
-import Hero from "./components/Hero";
-import Popular from "./components/Popular";
-import Tour from "./components/Tour";
+
 import Tour1 from "./components/Tour1";
-import Explore from "./components/Explore";
-import Blog from "./components/Blog";
-import Offers from "./components/Offers";
-import Footer from "./components/Footer";
 import Header from "./components/Header";
+import Home from "./pages/Home"
+import Footer from "./components/Footer";
+
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -17,26 +14,17 @@ export default function App() {
     AOS.init({
       duration: 1500,
     });
-  }, []); 
+  }, []);
 
   return (<>
     <Router>
       <Header />
       <Routes>
-        <Route path="/" element={
-          <>
-            <Hero />
-            <Popular />
-            <Offers />
-            <Tour />
-            <Explore />
-            <Blog />
-            <Footer />
-          </>
-        } />
+        <Route path="/" element={<Home />} />
         <Route path="/tours" element={<Tour1 />} />
       </Routes>
+      <Footer />
     </Router>
-    </>
+  </>
   );
 }

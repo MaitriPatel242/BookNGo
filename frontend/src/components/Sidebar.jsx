@@ -2,7 +2,7 @@ import {MdOutlineParagliding,MdSearch} from "react-icons/md";
 import { FaPeopleCarry, FaUsers } from "react-icons/fa";
 import { AiOutlineCalendar } from "react-icons/ai"
 import { useState } from "react";
-import ReactSlider from 'react-slider'
+// import ReactSlider from 'react-slider'
 const cardData =[
 {
 image: "/tour-11.jpg",
