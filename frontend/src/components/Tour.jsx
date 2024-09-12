@@ -3,6 +3,7 @@ import Carousel from "react-multi-carousel";
 import 'react-multi-carousel/lib/styles.css';
 import { BsPlay } from "react-icons/bs";
 import Accordion from "./Accordion";
+import Rating from "./Rating";
 import { CiCamera, CiHeart } from "react-icons/ci";
 import {
     MdArrowRightAlt,
@@ -45,11 +46,11 @@ const responsive = {
     }
 };
 
-const Tours = ({ image, name }) => {
+export const Tours = ({ image, name, rating=5,price=59}) => {
     return (
         <div>
             <div className="relative overflow-hidden rounded-t-lg">
-                <img src={image} alt="" className="rounded-t-lg hoverTag" />
+                <img src={image} alt="" className="rounded-t-lg hoverImg w-full h-[360px]" />
                 <div className="absolute flex justify-between top-4 left-4 right-4">
                     <p className="bg-[#14B0C3] rounded-md px-4 py-1 text-white text-sm">FEATURED</p>
                     <button className="bg-[#00000066] p-1 rounded-md">
@@ -62,14 +63,12 @@ const Tours = ({ image, name }) => {
                 <div className="px-6">
                     <div className="flex items-center gap-4 justify-between relative pt-4">
                         <span className="flex justify-center">
-                            {[...Array(5)].map((_, index) => (
-                                <MdStar key={index} className="text-[#ffa801] text-xl" />
-                            ))}
+                            <Rating rating={rating}/>
                         </span>
                         <span className="flex gap-2 shadow px-4 py-1 absolute -top-4 right-0 z-10 bg-white rounded-lg">
                             <div className="relative">
                                 <CiCamera size={24} />
-                                <button className="bg-green text-xs rounded-full text-white w-4 h-4 flex items-center absolute -top-1 -right-1 p-1">5</button>
+                                <button className="bg-green text-xs rounded-full text-white w-4 h-4 flex items-center justify-center absolute -top-1 -right-1">5</button>
                             </div>
                             <IoVideocamOutline size={24} />
                         </span>
@@ -77,11 +76,11 @@ const Tours = ({ image, name }) => {
                     <h4 className="text-xl font-semibold py-2 hover:text-green">{name}</h4>
                     <span className="flex items-center gap-2">
                         <MdLocationPin className="text-green text-xl" />
-                        <p className="text-[#757783] text-sm">Main Street, Brooklyn, NY</p>
+                        <p className="text-[#757783] text-md">Main Street, Brooklyn, NY</p>
                     </span>
-                    <span className="text-[#757783] flex py-4">
+                    <span className="text-[#757783] flex py-4 gap-2">
                         <LiaDollarSignSolid className="text-green text-xl" /> From
-                        <p className="text-green">$59.00</p>
+                        <p className="text-green">${price}.00</p>
                     </span>
                     <div className="flex justify-between border-t py-2">
                         <div className="flex items-center gap-4">
@@ -92,7 +91,7 @@ const Tours = ({ image, name }) => {
                                 <MdPeopleOutline className="text-green" />50
                             </span>
                         </div>
-                        <a href="#" className="flex items-center gap-2 text-sm mt-2">Explore <MdArrowRightAlt /></a>
+                        <a href="#" className="flex items-center gap-2 text-md">Explore <MdArrowRightAlt /></a>
                     </div>
                 </div>
             </div>
