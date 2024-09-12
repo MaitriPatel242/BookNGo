@@ -7,6 +7,16 @@
   width: 10px;
 }
 
+.active{
+  color:#63AB45;
+}
+
+.horizontal-slider{
+  width: 100%;
+  height: 4px;
+  background: #ddd;
+  position: relative;
+}
 /* Track */
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
