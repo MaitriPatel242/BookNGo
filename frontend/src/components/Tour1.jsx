@@ -1,13 +1,8 @@
 import { BsSortAlphaDown } from "react-icons/bs";
+import { RiPlanetLine } from "react-icons/ri";
 import CardSlider from "./CardSlider";
 import Sidebar from "./Sidebar";
-import Rating from "./Rating";
 import { useState } from "react";
-import { CiCamera, CiHeart } from "react-icons/ci";
-import { IoVideocamOutline } from "react-icons/io5";
-import { MdArrowRightAlt, MdLocationPin, MdPeopleOutline } from "react-icons/md";
-import { LiaDollarSignSolid } from "react-icons/lia";
-import { WiTime3 } from "react-icons/wi";
 import ReactPaginate from 'react-paginate';
 import { Tours } from "./Tour"
 
@@ -190,7 +185,7 @@ export default function Tour1() {
                         </span>
                     </div>
 
-                    <div className="grid lg:grid-col-2 grid-cols-2 gap-4">
+                    <div className="grid lg:grid-cols-2 grid-cols-1 gap-4">
                         {currentPageData?.map((item, index) => (
                             <Tours key={index} image={item.image} name={item.name} rating={item.rating} price={item.price} />
                         ))}
@@ -210,6 +205,22 @@ export default function Tour1() {
                     />
                 </div>
             </section>
+            <div className="bg-[url('/bg-shape-04.png')] bg-green bg-no-repeat bg-cover relative z-10 lg:mb-0 -mb-24">
+                <div className="lg:py-16 py-8 lg:px-3 px-4 lg:flex justify-between items-center max-w-[1320px] mx-auto">
+                    <div className="flex items-center gap-4 lg:mb-0 mb-4">
+                        <RiPlanetLine color="white" size={64} />
+                        <span className="text-white">
+                            <p className="text-sm">QUISEQUE VEL ORTOR</p>
+                            <h4 className="lg:text-4xl text-2xl font-bold">
+                                Ready to adventure and enjoy natural
+                            </h4>
+                        </span>
+                    </div>
+                    <button className="bg-white rounded-lg text-lg shadow py-4 px-8 font-bold">
+                        Explore More
+                    </button>
+                </div>
+            </div>
         </div>
     );
 }
