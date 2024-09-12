@@ -109,16 +109,19 @@ export default function Sidebar() {
                             ariaLabel={["Lower thumb", "Upper thumb"]}
                             ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
                             renderTrack={(props, state) => {
-                                const {index} = state;
-                                const {key, ...restProps } = props; 
+                                const { index } = state;
+                                const { key, ...restProps } = props;
                                 const trackStyle = index === 1 ? { backgroundColor: '#63ab45' } : { backgroundColor: '#999' };
                                 return (
                                     <div key={key} {...restProps} style={{ ...restProps.style, ...trackStyle }} />
                                 );
                             }}
-                            renderThumb={(props, state) => (
-                                <div {...props} style={{ ...props.style, backgroundColor: '#63ab45', borderRadius: '50%', width: '20px', height: '20px' }} />
-                            )}
+                            renderThumb={(props, state) => {
+                                const { key, ...restProps } = props;
+                                return(
+                                    <div key={key} {...restProps} style={{ ...restProps.style, backgroundColor: '#63ab45', borderRadius: '50%', width: '20px', height: '20px' }} />
+                                )
+                            }}
                         />
 
 
@@ -181,7 +184,7 @@ export default function Sidebar() {
                 </span>
                 <div className="absolute bottom-0 w-full bg-black bg-opacity-50 py-5 flex flex-col items-center justify-center transition-all duration-300 group-hover:bg-white group-hover:bg-opacity-100">
                     <p className="text-green text-xl font-bold flex flex-col">Travel to{" "}</p>
-                    
+
                     <span className="text-white text-2xl group-hover:text-gray-800">United Kingdom</span>
                 </div>
             </div>
