@@ -17,10 +17,6 @@ class User(models.Model):
     def __str__(self):
         return self.name
 
-
-from django.db import models
-from django.utils import timezone
-
 class Destination(models.Model):
     dest_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
@@ -32,11 +28,6 @@ class Destination(models.Model):
 
     def __str__(self):
         return self.name
-
-
-from django.db import models
-from django.utils import timezone
-from .models import Destination  # Ensure the Destination model is properly imported
 
 class Package(models.Model):
     package_id = models.AutoField(primary_key=True)
