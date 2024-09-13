@@ -6,65 +6,69 @@ from django.utils import timezone
 
 class User(models.Model):
     user_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=50)
+    user_name = models.CharField(max_length=50)
     user_email = models.EmailField(unique=True)
-    contact_num = models.CharField(max_length=10)
-    user_type = models.IntegerField()
-    created_at = models.DateTimeField(default=timezone.now)
+    contact_number = models.CharField(max_length=10)
+    created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    city = models.CharField(max_length=100)  # You can set max_length
+    city = models.CharField(max_length=100)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.name
+        return self.user_name
 
 class Destination(models.Model):
-    dest_id = models.AutoField(primary_key=True)
+    destination_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
     country = models.CharField(max_length=50)
-    image = models.ImageField(upload_to='destination_images/', blank=True, null=True)
+    image = models.ImageField(upload_to='media/destination_images/', blank=True, null=True)
     city = models.CharField(max_length=50)
-    created_at = models.DateTimeField(default=timezone.now)
+    created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name
 
 class Package(models.Model):
     package_id = models.AutoField(primary_key=True)
-    dest_id = models.ForeignKey(Destination, on_delete=models.CASCADE)  # ForeignKey to Destination model
-    rating = models.IntegerField()
-    image = models.ImageField(upload_to='package_images/', blank=True, null=True)  # Optional image field
-    price = models.IntegerField()
+    destination_id = models.ForeignKey(Destination, on_delete=models.CASCADE) 
+    rating = models.FloatField()
+    image = models.ImageField(upload_to='media/package_images/', blank=True, null=True)
+    price = models.FloatField()
     name = models.CharField(max_length=50)
-    duration = models.IntegerField()  # Duration in days or other unit
+    duration = models.IntegerField() 
     description = models.TextField()
-    created_at = models.DateTimeField(default=timezone.now)
+    created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name
 
 
 class Transport(models.Model):
-    trans_id = models.AutoField(primary_key=True)
-    type = models.CharField(max_length=50)  # E.g., bus, train, flight
+    transport_id = models.AutoField(primary_key=True)
+    type = models.CharField(max_length=50)
     company_name = models.CharField(max_length=50)
-    price = models.IntegerField()
-    created_at = models.DateTimeField(default=timezone.now)
+    price = models.FloatField()
+    created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return f"{self.type} by {self.company_name}"
 
 class Accomodation(models.Model):
-    acc_id = models.AutoField(primary_key=True)
-    des_id = models.ForeignKey(Destination, on_delete=models.CASCADE)  # ForeignKey to Destination model
+    accomodation_id = models.AutoField(primary_key=True)
+    destination_id = models.ForeignKey(Destination, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
-    room_type = models.CharField(max_length=50)  # E.g., single, double, suite
-    price = models.IntegerField()
-    image = models.ImageField(upload_to='accommodation_images/', blank=True, null=True)  # Optional image field
-    created_at = models.DateTimeField(default=timezone.now)
+    room_type = models.CharField(max_length=50)
+    price = models.FloatField()
+    image = models.ImageField(upload_to='media/accommodation_images/', blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name
@@ -73,34 +77,41 @@ class Booking(models.Model):
     booking_id = models.AutoField(primary_key=True)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     total_people = models.IntegerField()
-    pack_id = models.ForeignKey(Package, on_delete=models.CASCADE)
-    tras_id = models.ForeignKey(Transport, on_delete=models.CASCADE)
-    acc_id = models.ForeignKey(Accomodation, on_delete=models.CASCADE)
-    start_date = models.DateTimeField()
-    total_price = models.IntegerField()
-    created_at = models.DateTimeField(default=timezone.now)
+    package_id = models.ForeignKey(Package, on_delete=models.CASCADE)
+    trasport_id = models.ForeignKey(Transport, on_delete=models.CASCADE)
+    accomodation_id = models.ForeignKey(Accomodation, on_delete=models.CASCADE)
+    start_date = models.DateField()
+    total_price = models.FloatField()
+    created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return f"Booking {self.booking_id} for {self.user_id}"
 
 class Payment(models.Model):
-    pay_id = models.AutoField(primary_key=True)
-    booking = models.ForeignKey(Booking, on_delete=models.CASCADE)  # Link payment to booking
+    payment_id = models.AutoField(primary_key=True)
+    booking_id = models.ForeignKey(Booking, on_delete=models.CASCADE) 
     date = models.DateField()
     amount = models.IntegerField()
-    type = models.CharField(max_length=20)  # E.g., 'Credit Card', 'Cash', 'PayPal', etc.
+    type = models.CharField(max_length=20) 
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
-        return f"Payment {self.pay_id} for Booking {self.booking}"
+        return f"Payment {self.payment_id} for Booking {self.booking_id}"
     
 
-class PackageReview(models.Model):  # Inheriting from models.Model instead of models.Manager
-    id = models.AutoField(primary_key=True)
-    pack_id = models.ForeignKey(Package, on_delete=models.CASCADE)  # ForeignKey to Package
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)  # ForeignKey to User
+class PackageReview(models.Model):
+    package_review_id = models.AutoField(primary_key=True)
+    package_id = models.ForeignKey(Package, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     review = models.TextField()
-    rating = models.IntegerField()  # Ensure you validate the range (1-5 or any other scale)
+    rating = models.FloatField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return f"Review {self.id} for Package {self.pack_id} by User {self.user_id}"
