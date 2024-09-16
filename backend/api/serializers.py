@@ -1,10 +1,16 @@
 from rest_framework import serializers
-from .models import User,Destination,Package,Transport,Accomodation,Booking,Payment,PackageReview
+from djoser.serializers import UserCreateSerializer
+from .models import User,UserProfile, Destination, Package, Transport, Accomodation, Booking, Payment, PackageReview
 
-
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
+class CreateUserSerializer(UserCreateSerializer):
+    class Meta(UserCreateSerializer.Meta):
         model = User
+        fields = ['id', 'email', 'first_name', 'last_name', 'password']
+    
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserProfile
         fields = '__all__'
 
 class DestinationSerializer(serializers.ModelSerializer):
@@ -26,6 +32,7 @@ class AccomodationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Accomodation
         fields = '__all__'
+
 class BookingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Booking
@@ -35,7 +42,6 @@ class PaymentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Payment
         fields = '__all__'
-
 
 class PackageReviewSerializer(serializers.ModelSerializer):
     class Meta:
