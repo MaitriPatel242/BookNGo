@@ -91,7 +91,7 @@ export const Tours = ({ image, name, rating=5,price=59}) => {
                                 <MdPeopleOutline className="text-green" />50
                             </span>
                         </div>
-                        <a href="#" className="flex items-center gap-2 text-md">Explore <MdArrowRightAlt /></a>
+                        <a href="/booking" className="flex items-center gap-2 text-md">Explore <MdArrowRightAlt /></a>
                     </div>
                 </div>
             </div>
