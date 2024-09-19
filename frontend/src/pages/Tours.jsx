@@ -1,5 +1,12 @@
+import Header from '../components/Header';
+import Footer from "../components/Footer"
 import Tour1 from '../components/Tour1'
 
 export default function Tours() {
-    return (<Tour1 />);
+    return (
+        <>
+            <Header />
+            <Tour1 />
+            <Footer />
+        </>);
 }

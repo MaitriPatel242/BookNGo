@@ -1,6 +1,60 @@
-import React from 'react';
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { register, reset, logout } from "../features/auth/authSlice";
+import { useNavigate, Link } from "react-router-dom";
 
-const SignupForm = () => {
+
+const SignUpForm = () => {
+  const [formData, setFormData] = useState({
+    first_name: "",
+    last_name: "",
+    email: "",
+    password: "",
+    re_password: "",
+  });
+
+  const { first_name, last_name, email, password, re_password } = formData;
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { user, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  );
+
+  const handleChange = (e) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (password !== re_password) {
+    } else {
+      const userData = {
+        first_name,
+        last_name,
+        email,
+        password,
+        re_password,
+      };
+      console.log(formData)
+      dispatch(register(userData));
+    }
+  };
+
+  useEffect(() => {
+
+    if (isSuccess && user) {
+      navigate("/login");
+    }
+
+    dispatch(reset());
+  }, [isError, isSuccess, user, dispatch]);
+
+
   return (
     <div
       className="min-h-screen bg-cover bg-center flex items-center justify-center relative"
@@ -20,13 +74,15 @@ const SignupForm = () => {
       <div className="relative bg-green text-white p-6 md:p-8 rounded-lg shadow-lg w-full max-w-md z-10">
         <h2 className="text-2xl md:text-3xl font-bold mb-4 text-center">Sign Up</h2>
 
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label className="block text-lg font-semibold mb-1" htmlFor="firstName">
               First Name
             </label>
             <input
               id="firstName"
+              onChange={handleChange}
+              value={first_name}
               type="text"
               className="w-full p-2 rounded-lg bg-white text-black focus:outline-none focus:ring-2 focus:ring-green-700"
               placeholder="Enter your first name"
@@ -40,6 +96,8 @@ const SignupForm = () => {
             </label>
             <input
               id="lastName"
+              onChange={handleChange}
+              value={last_name}
               type="text"
               className="w-full p-2 rounded-lg bg-white text-black focus:outline-none focus:ring-2 focus:ring-green-700"
               placeholder="Enter your last name"
@@ -53,22 +111,11 @@ const SignupForm = () => {
             </label>
             <input
               id="email"
+              onChange={handleChange}
+              value={email}
               type="email"
               className="w-full p-2 rounded-lg bg-white text-black focus:outline-none focus:ring-2 focus:ring-green-700"
               placeholder="Enter your email"
-              required
-            />
-          </div>
-
-          <div className="mb-3">
-            <label className="block text-lg font-semibold mb-1" htmlFor="phone">
-              Phone Number
-            </label>
-            <input
-              id="phone"
-              type="tel"
-              className="w-full p-2 rounded-lg bg-white text-black focus:outline-none focus:ring-2 focus:ring-green-700"
-              placeholder="Enter your phone number"
               required
             />
           </div>
@@ -79,6 +126,8 @@ const SignupForm = () => {
             </label>
             <input
               id="password"
+              onChange={handleChange}
+              value={password}
               type="password"
               className="w-full p-2 rounded-lg bg-white text-black focus:outline-none focus:ring-2 focus:ring-green-700"
               placeholder="Enter your password"
@@ -92,6 +141,8 @@ const SignupForm = () => {
             </label>
             <input
               id="confirmPassword"
+              onChange={handleChange}
+              value={re_password}
               type="password"
               className="w-full p-2 rounded-lg bg-white text-black focus:outline-none focus:ring-2 focus:ring-green-700"
               placeholder="Confirm your password"
@@ -103,6 +154,7 @@ const SignupForm = () => {
 
           <button
             type="submit"
+            onClick={handleSubmit}
             className="w-full py-4 bg-white text-green text-2xl font-bold rounded-lg hover:bg-gray-100 transition duration-300"
           >
             Signup
@@ -110,9 +162,9 @@ const SignupForm = () => {
 
           <p className="text-center mt-4">
             Already have an account?{' '}
-            <a href="/login" className="text-white underline hover:text-gray-200">
+            <Link to="/login" className="text-white underline hover:text-gray-200">
               Log In
-            </a>
+            </Link>
           </p>
         </form>
       </div>
@@ -120,4 +172,4 @@ const SignupForm = () => {
   );
 };
 
-export default SignupForm;
+export default SignUpForm;

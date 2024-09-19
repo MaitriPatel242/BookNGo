@@ -1,7 +1,12 @@
 import React from 'react';
 
+import Header from "../components/Header"
+import Footer from "../components/Footer"
+
 const ContactForm = () => {
-  return (
+  return (<>
+    <Header />
+
     <div
       className="min-h-screen bg-cover bg-center flex items-center justify-center relative"
       style={{
@@ -70,6 +75,9 @@ const ContactForm = () => {
         </form>
       </div>
     </div>
+    <Footer/>
+
+  </>
   );
 };
 

@@ -4,6 +4,7 @@ import { BsPersonCircle } from "react-icons/bs";
 import { MdClose } from "react-icons/md";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { NavLink } from "react-router-dom"; // Ensure this is correctly imported
+import { Link } from 'react-router-dom';
 
 export default function Header() {
     const [dropdown, setDropdown] = useState(false);
@@ -28,24 +29,35 @@ export default function Header() {
                         <NavLink to="/tours" className="leading-normal no-underline text-white text-lg hover:text-green">
                             Tours
                         </NavLink>
-                        <NavLink to="/news" className="leading-normal no-underline text-white text-lg hover:text-green">
-                            News
-                        </NavLink>
-                        <NavLink to="/page" className="leading-normal no-underline text-white text-lg hover:text-green">
-                            Pages
+                        <NavLink to="/about" className="leading-normal no-underline text-white text-lg hover:text-green">
+                            About
                         </NavLink>
                         <NavLink to="/contact" className="leading-normal no-underline text-white text-lg hover:text-green">
                             Contact
                         </NavLink>
                     </ul>
-                    <div className="flex gap-4 max-lg:hidden w-40 justify-center">
+                    {/* <div className="flex gap-4 max-lg:hidden w-40 justify-center">
                         <button className="rounded-full text-white w-10 h-10 flex items-center justify-center hover:text-green">
                             <CiSearch size={32} />
                         </button>
                         <button className="rounded-full text-white w-10 h-10 flex items-center justify-center hover:bg-green hover:text-white">
                             <BsPersonCircle size={24} />
                         </button>
+                    </div> */}
+                    <div className="flex gap-4 items-center">
+                        <Link to="/login">
+                            <button className="px-4 py-2 bg-white text-BaseColor border border-BaseColor rounded-lg hover:bg-gray-100 transition duration-300">
+                                Login
+                            </button>
+                        </Link>
+                        <Link to="/signup">
+                            <button className="px-4 py-2 bg-green text-white rounded-lg transition duration-300 bg-green">
+                                Signup
+                            </button>
+                        </Link>
                     </div>
+
+
                     {dropdown ? (
                         <div className="lg:hidden text-2xl cursor-pointer text-white" onClick={showDropdown}>
                             <MdClose />
@@ -66,11 +78,8 @@ export default function Header() {
                                 <NavLink to="/tours" className="leading-normal no-underline text-white text-lg hover:text-green">
                                     Tours
                                 </NavLink>
-                                <NavLink to="/news" className="leading-normal no-underline text-white text-lg hover:text-green">
-                                    News
-                                </NavLink>
-                                <NavLink to="/page" className="leading-normal no-underline text-white text-lg hover:text-green">
-                                    Pages
+                                <NavLink to="/about" className="leading-normal no-underline text-white text-lg hover:text-green">
+                                    About
                                 </NavLink>
                                 <NavLink to="/contact" className="leading-normal no-underline text-white text-lg hover:text-green">
                                     Contact
