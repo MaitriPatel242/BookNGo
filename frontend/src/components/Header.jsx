@@ -51,7 +51,7 @@ export default function Header() {
                             </button>
                         </Link>
                         <Link to="/signup">
-                            <button className="px-4 py-2 bg-green text-white rounded-lg transition duration-300 bg-green">
+                            <button className="px-4 py-2 text-white rounded-lg transition duration-300 bg-green">
                                 Signup
                             </button>
                         </Link>

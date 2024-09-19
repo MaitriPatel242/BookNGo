@@ -1,7 +1,4 @@
 from django.contrib import admin
-
-# Register your models here.
-from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext_lazy as _
 from .forms import CustomUserChangeForm, CustomUserCreationForm
@@ -53,58 +50,58 @@ readonly_fields = ["last_login"]
 admin.site.register(User, UserAdmin)
 
 
-# UserProfile Admin
+# Registering the UserProfile model
 @admin.register(UserProfile)
 class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ["user_id", "first_name", "last_name", "gender", "city", "is_active"]
-    list_filter = ["gender", "city", "is_active"]
-    search_fields = ["first_name", "last_name", "city"]
+    list_display = ('first_name', 'last_name', 'user_id', 'gender', 'city', 'is_active', 'created_at')
+    search_fields = ('first_name', 'last_name', 'city')
+    list_filter = ('gender', 'is_active', 'created_at')
 
-# Destination Admin
+# Registering the Destination model
 @admin.register(Destination)
 class DestinationAdmin(admin.ModelAdmin):
-    list_display = ["name", "country", "city", "is_active"]
-    list_filter = ["country", "city", "is_active"]
-    search_fields = ["name", "country", "city"]
+    list_display = ('name', 'country', 'city', 'is_active', 'created_at')
+    search_fields = ('name', 'country', 'city')
+    list_filter = ('country', 'is_active')
 
-# Package Admin
+# Registering the Package model
 @admin.register(Package)
 class PackageAdmin(admin.ModelAdmin):
-    list_display = ["name", "destination_id", "price", "rating", "duration", "is_active"]
-    list_filter = ["destination_id", "rating", "price", "is_active"]
-    search_fields = ["name", "destination_id__name"]
+    list_display = ('name', 'destination_id', 'price', 'rating', 'duration', 'is_active', 'created_at')
+    search_fields = ('name', 'destination_id__name', 'price', 'rating')
+    list_filter = ('destination_id', 'is_active', 'rating')
 
-# Transport Admin
+# Registering the Transport model
 @admin.register(Transport)
 class TransportAdmin(admin.ModelAdmin):
-    list_display = ["type", "company_name", "price", "is_active"]
-    list_filter = ["type", "company_name", "is_active"]
-    search_fields = ["type", "company_name"]
+    list_display = ('type', 'company_name', 'price', 'is_active', 'created_at')
+    search_fields = ('type', 'company_name')
+    list_filter = ('type', 'is_active')
 
-# Accommodation Admin
+# Registering the Accomodation model
 @admin.register(Accomodation)
 class AccomodationAdmin(admin.ModelAdmin):
-    list_display = ["name", "destination_id", "room_type", "price", "is_active"]
-    list_filter = ["destination_id", "room_type", "is_active"]
-    search_fields = ["name", "room_type", "destination_id__name"]
+    list_display = ('name', 'destination_id', 'room_type', 'price', 'is_active', 'created_at')
+    search_fields = ('name', 'destination_id__name', 'room_type')
+    list_filter = ('destination_id', 'room_type', 'is_active')
 
-# Booking Admin
+# Registering the Booking model
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ["user_id", "package_id", "trasport_id", "accomodation_id", "total_people", "start_date", "total_price", "is_active"]
-    list_filter = ["start_date", "package_id", "user_id", "is_active"]
-    search_fields = ["user_id__email", "package_id__name"]
+    list_display = ('user_id', 'package_id', 'trasport_id', 'accomodation_id', 'start_date', 'total_people', 'total_price', 'is_active')
+    search_fields = ('user_id__email', 'package_id__name', 'trasport_id__type', 'accomodation_id__name')
+    list_filter = ('start_date', 'is_active')
 
-# Payment Admin
+# Registering the Payment model
 @admin.register(Payment)
 class PaymentAdmin(admin.ModelAdmin):
-    list_display = ["booking_id", "date", "amount", "type", "is_active"]
-    list_filter = ["date", "type", "is_active"]
-    search_fields = ["booking_id__id", "type"]
+    list_display = ('booking_id', 'date', 'amount', 'type', 'is_active')
+    search_fields = ('booking_id__user_id__email', 'type')
+    list_filter = ('date', 'is_active')
 
-# PackageReview Admin
+# Registering the PackageReview model
 @admin.register(PackageReview)
 class PackageReviewAdmin(admin.ModelAdmin):
-    list_display = ["package_id", "user_id", "rating", "is_active"]
-    list_filter = ["rating", "is_active"]
-    search_fields = ["user_id__email", "package_id__name"]
+    list_display = ('package_id', 'user_id', 'rating', 'is_active', 'created_at')
+    search_fields = ('package_id__name', 'user_id__email', 'rating')
+    list_filter = ('rating', 'is_active')

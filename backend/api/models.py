@@ -136,7 +136,7 @@ class Booking(models.Model):
         verbose_name_plural = _("Bookings")
 
     def __str__(self):
-        return f"Booking {self.booking_id} for {self.user_id}"
+        return f"Booking {self.id} for {self.user_id}"
 
 class Payment(models.Model):
     booking_id = models.ForeignKey(Booking, on_delete=models.CASCADE) 
