@@ -15,7 +15,6 @@ const config = {
 
 const register = async (userData) => {
   const response = await axios.post(REGISTER_URL, userData, config);
-
   return response.data;
 };
 
