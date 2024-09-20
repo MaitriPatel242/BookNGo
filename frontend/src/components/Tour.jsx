@@ -4,8 +4,9 @@ import 'react-multi-carousel/lib/styles.css';
 import { BsPlay } from "react-icons/bs";
 import Accordion from "./Accordion";
 import Rating from "./Rating";
+import { Link } from "react-router-dom";
 import { CiCamera, CiHeart } from "react-icons/ci";
-import {
+import { 
     MdArrowRightAlt,
     MdLocationPin,
     MdPeopleOutline,
@@ -91,7 +92,7 @@ export const Tours = ({ image, name, rating=5,price=59}) => {
                                 <MdPeopleOutline className="text-green" />50
                             </span>
                         </div>
-                        <a href="/booking" className="flex items-center gap-2 text-md">Explore <MdArrowRightAlt /></a>
+                        <Link to="/booking" className="flex items-center gap-2 text-md">Explore <MdArrowRightAlt /></Link>
                     </div>
                 </div>
             </div>
