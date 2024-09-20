@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from .forms import CustomUserChangeForm, CustomUserCreationForm
 from django.contrib import admin
 from .models import User
-from .models import Destination,UserProfile, Package, Transport, Accomodation, Booking, Payment, PackageReview
+from .models import Destination,UserProfile, Package, Booking,  PackageReview
 
 class UserAdmin(BaseUserAdmin): 
     ordering = ["email"]
@@ -71,33 +71,14 @@ class PackageAdmin(admin.ModelAdmin):
     search_fields = ('name', 'destination_id__name', 'price', 'rating')
     list_filter = ('destination_id', 'is_active', 'rating')
 
-# Registering the Transport model
-@admin.register(Transport)
-class TransportAdmin(admin.ModelAdmin):
-    list_display = ('type', 'company_name', 'price', 'is_active', 'created_at')
-    search_fields = ('type', 'company_name')
-    list_filter = ('type', 'is_active')
-
-# Registering the Accomodation model
-@admin.register(Accomodation)
-class AccomodationAdmin(admin.ModelAdmin):
-    list_display = ('name', 'destination_id', 'room_type', 'price', 'is_active', 'created_at')
-    search_fields = ('name', 'destination_id__name', 'room_type')
-    list_filter = ('destination_id', 'room_type', 'is_active')
 
 # Registering the Booking model
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ('user_id', 'package_id', 'trasport_id', 'accomodation_id', 'start_date', 'total_people', 'total_price', 'is_active')
-    search_fields = ('user_id__email', 'package_id__name', 'trasport_id__type', 'accomodation_id__name')
+    list_display = ('user_id', 'package_id', 'start_date', 'total_people', 'total_price', 'is_active')
+    search_fields = ('user_id__email', 'package_id__name',)
     list_filter = ('start_date', 'is_active')
 
-# Registering the Payment model
-@admin.register(Payment)
-class PaymentAdmin(admin.ModelAdmin):
-    list_display = ('booking_id', 'date', 'amount', 'type', 'is_active')
-    search_fields = ('booking_id__user_id__email', 'type')
-    list_filter = ('date', 'is_active')
 
 # Registering the PackageReview model
 @admin.register(PackageReview)

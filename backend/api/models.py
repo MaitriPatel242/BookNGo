@@ -86,45 +86,11 @@ class Package(models.Model):
         return self.name
 
 
-class Transport(models.Model):
-    type = models.CharField(max_length=50)
-    company_name = models.CharField(max_length=50)
-    price = models.FloatField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    is_active = models.BooleanField(default=True)
-    
-    class Meta:
-        verbose_name = _("Transport")
-        verbose_name_plural = _("Transports")
-
-    def __str__(self):
-        return f"{self.type} by {self.company_name}"
-
-class Accomodation(models.Model):
-    destination_id = models.ForeignKey(Destination, on_delete=models.CASCADE)
-    name = models.CharField(max_length=50)
-    room_type = models.CharField(max_length=50)
-    price = models.FloatField()
-    image = models.ImageField(upload_to='media/accommodation_images/', blank=True, null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    is_active = models.BooleanField(default=True)
-    
-    
-    class Meta:
-        verbose_name = _("Accomodation")
-        verbose_name_plural = _("Accomodations")
-
-    def __str__(self):
-        return self.name
 
 class Booking(models.Model):
     user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     total_people = models.IntegerField()
     package_id = models.ForeignKey(Package, on_delete=models.CASCADE)
-    trasport_id = models.ForeignKey(Transport, on_delete=models.CASCADE)
-    accomodation_id = models.ForeignKey(Accomodation, on_delete=models.CASCADE)
     start_date = models.DateField()
     total_price = models.FloatField()
     created_at = models.DateTimeField(auto_now_add=True)
@@ -137,22 +103,6 @@ class Booking(models.Model):
 
     def __str__(self):
         return f"Booking {self.id} for {self.user_id}"
-
-class Payment(models.Model):
-    booking_id = models.ForeignKey(Booking, on_delete=models.CASCADE) 
-    date = models.DateField()
-    amount = models.IntegerField()
-    type = models.CharField(max_length=20) 
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    is_active = models.BooleanField(default=True)
-    
-    class Meta:
-        verbose_name = _("Payment")
-        verbose_name_plural = _("Payments")
-
-    def __str__(self):
-        return f"Payment {self.payment_id} for Booking {self.booking_id}"
     
 
 class PackageReview(models.Model):

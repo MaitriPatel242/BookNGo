@@ -175,7 +175,7 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'bookngo066@gmail.com' 
 EMAIL_HOST_PASSWORD = 'ariqxfvmdukkrnya' 
 DEFAULT_FROM_EMAIL = 'bookngo066@gmail.com'
-DOMAIN = "localhost:8000" 
+DOMAIN = "localhost:5173" 
 SITE_NAME = 'BookNGo'
 
 STATIC_URL = 'static/'

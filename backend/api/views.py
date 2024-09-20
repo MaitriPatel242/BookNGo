@@ -1,9 +1,7 @@
 from rest_framework import generics
-from .models import User,UserProfile, Destination, Package, Transport, Accomodation, Booking, Payment, PackageReview
+from .models import User,UserProfile, Destination, Package, Booking, PackageReview
 from .serializers import (
-    UserProfileSerializer, DestinationSerializer, PackageSerializer, 
-    TransportSerializer, AccomodationSerializer, BookingSerializer, 
-    PaymentSerializer, PackageReviewSerializer, CreateUserSerializer
+    UserProfileSerializer, DestinationSerializer, PackageSerializer,  BookingSerializer,  PackageReviewSerializer, CreateUserSerializer
 )
 
 class UserListCreateView(generics.ListCreateAPIView):
@@ -41,24 +39,6 @@ class PackageRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Package.objects.all()
     serializer_class = PackageSerializer
 
-# Transport Views
-class TransportListCreateView(generics.ListCreateAPIView):
-    queryset = Transport.objects.all()
-    serializer_class = TransportSerializer
-
-class TransportRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Transport.objects.all()
-    serializer_class = TransportSerializer
-
-# Accomodation Views
-class AccomodationListCreateView(generics.ListCreateAPIView):
-    queryset = Accomodation.objects.all()
-    serializer_class = AccomodationSerializer
-
-class AccomodationRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Accomodation.objects.all()
-    serializer_class = AccomodationSerializer
-
 # Booking Views
 class BookingListCreateView(generics.ListCreateAPIView):
     queryset = Booking.objects.all()
@@ -67,15 +47,6 @@ class BookingListCreateView(generics.ListCreateAPIView):
 class BookingRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Booking.objects.all()
     serializer_class = BookingSerializer
-
-# Payment Views
-class PaymentListCreateView(generics.ListCreateAPIView):
-    queryset = Payment.objects.all()
-    serializer_class = PaymentSerializer
-
-class PaymentRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Payment.objects.all()
-    serializer_class = PaymentSerializer
 
 # Package Review Views
 class PackageReviewListCreateView(generics.ListCreateAPIView):

@@ -5,15 +5,21 @@ import { MdClose } from "react-icons/md";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { NavLink } from "react-router-dom"; // Ensure this is correctly imported
 import { Link } from 'react-router-dom';
+import { logout } from "../features/auth/authSlice";
 
 export default function Header() {
     const [dropdown, setDropdown] = useState(false);
+    const [Is_LoggedIn, setLoggedIn] = useState(localStorage.getItem("user"))
 
     const showDropdown = () => {
         setDropdown(!dropdown);
     };
 
-    let Is_LoggedIn = localStorage.getItem("user")
+    const handleLogout = () =>{
+        logout();
+        setLoggedIn(localStorage.getItem("user"))
+    }
+
 
     return (
         <nav className="w-full h-24 flex flex-col justify-center items-center sticky top-0 z-50 bg-[#1D231F]">
@@ -40,7 +46,7 @@ export default function Header() {
                     </ul>
                     {Is_LoggedIn ?
                         <div className="flex gap-4 max-lg:hidden w-40 justify-center">
-                            <button className="rounded-full text-white w-10 h-10 flex items-center justify-center hover:text-green">
+                            <button className="rounded-full text-white w-10 h-10 flex items-center justify-center hover:text-green" onClick={handleLogout}>
                                 <CiLogout size={32} />
                             </button>
                             <button className="rounded-full text-white w-10 h-10 flex items-center justify-center hover:bg-green hover:text-white">
@@ -89,10 +95,10 @@ export default function Header() {
                                 </NavLink>
                                 {Is_LoggedIn ?
                                     <>
-                                        <NavLink to="/profile" className="leading-normal no-underline text-white text-lg hover:text-green">
+                                        <NavLink onClick={logout} className="leading-normal no-underline text-white text-lg hover:text-green">
                                             Profile
                                         </NavLink>
-                                        <NavLink to="/logout" className="leading-normal no-underline text-white text-lg hover:text-green">
+                                        <NavLink className="leading-normal no-underline text-white text-lg hover:text-green">
                                             Logout
                                         </NavLink>
                                     </> :
