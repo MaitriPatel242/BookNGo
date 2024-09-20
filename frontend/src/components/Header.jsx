@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CiSearch } from "react-icons/ci";
+import { CiLogout, CiSearch } from "react-icons/ci";
 import { BsPersonCircle } from "react-icons/bs";
 import { MdClose } from "react-icons/md";
 import { HiMenuAlt3 } from "react-icons/hi";
@@ -12,6 +12,8 @@ export default function Header() {
     const showDropdown = () => {
         setDropdown(!dropdown);
     };
+
+    let Is_LoggedIn = localStorage.getItem("user")
 
     return (
         <nav className="w-full h-24 flex flex-col justify-center items-center sticky top-0 z-50 bg-[#1D231F]">
@@ -36,26 +38,27 @@ export default function Header() {
                             Contact
                         </NavLink>
                     </ul>
-                    {/* <div className="flex gap-4 max-lg:hidden w-40 justify-center">
-                        <button className="rounded-full text-white w-10 h-10 flex items-center justify-center hover:text-green">
-                            <CiSearch size={32} />
-                        </button>
-                        <button className="rounded-full text-white w-10 h-10 flex items-center justify-center hover:bg-green hover:text-white">
-                            <BsPersonCircle size={24} />
-                        </button>
-                    </div> */}
-                    <div className="flex gap-4 items-center">
-                        <Link to="/login">
-                            <button className="px-4 py-2 bg-white text-BaseColor border border-BaseColor rounded-lg hover:bg-gray-100 transition duration-300">
-                                Login
+                    {Is_LoggedIn ?
+                        <div className="flex gap-4 max-lg:hidden w-40 justify-center">
+                            <button className="rounded-full text-white w-10 h-10 flex items-center justify-center hover:text-green">
+                                <CiLogout size={32} />
                             </button>
-                        </Link>
-                        <Link to="/signup">
-                            <button className="px-4 py-2 text-white rounded-lg transition duration-300 bg-green">
-                                Signup
+                            <button className="rounded-full text-white w-10 h-10 flex items-center justify-center hover:bg-green hover:text-white">
+                                <BsPersonCircle size={24} />
                             </button>
-                        </Link>
-                    </div>
+                        </div> :
+                        <div className="flex gap-4 items-center">
+                            <Link to="/login">
+                                <button className="px-4 py-2 bg-white text-BaseColor border border-BaseColor rounded-lg hover:bg-gray-100 transition duration-300">
+                                    Login
+                                </button>
+                            </Link>
+                            <Link to="/signup">
+                                <button className="px-4 py-2 text-white rounded-lg transition duration-300 bg-green">
+                                    Signup
+                                </button>
+                            </Link>
+                        </div>}
 
 
                     {dropdown ? (
@@ -84,6 +87,24 @@ export default function Header() {
                                 <NavLink to="/contact" className="leading-normal no-underline text-white text-lg hover:text-green">
                                     Contact
                                 </NavLink>
+                                {Is_LoggedIn ?
+                                    <>
+                                        <NavLink to="/profile" className="leading-normal no-underline text-white text-lg hover:text-green">
+                                            Profile
+                                        </NavLink>
+                                        <NavLink to="/logout" className="leading-normal no-underline text-white text-lg hover:text-green">
+                                            Logout
+                                        </NavLink>
+                                    </> :
+                                    <>
+                                        <NavLink to="/login" className="leading-normal no-underline text-white text-lg hover:text-green">
+                                            Login
+                                        </NavLink>
+                                        <NavLink to="/signup" className="leading-normal no-underline text-white text-lg hover:text-green">
+                                            Signup
+                                        </NavLink>
+                                    </>
+                                }
                             </ul>
                         </div>
                     </div>

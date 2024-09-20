@@ -11,14 +11,14 @@ import Header from "../components/Header";
 export default function Home() {
     return (
         <>
-        <Header/>
+            <Header />
             <Hero />
             <Popular />
             <Offers />
             <Tour />
             <Explore />
             <Blog />
-            <Footer/>
+            <Footer />
         </>
     );
 }
