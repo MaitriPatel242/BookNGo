@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { register, reset, logout } from "../features/auth/authSlice";
@@ -34,14 +35,17 @@ const SignUpForm = () => {
     if (password !== re_password) {
     } else {
       const userData = {
-        first_name,
-        last_name,
         email,
         password,
-        re_password,
+        first_name,
+        last_name,
+        re_password
       };
-      console.log(formData)
-      dispatch(register(userData));
+      console.log("SIGNUP")
+      console.log(userData)
+      dispatch(register(userData, navigate));
+      navigate("/");
+
     }
   };
 
