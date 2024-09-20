@@ -44,14 +44,12 @@ const SignUpForm = () => {
       console.log("SIGNUP")
       console.log(userData)
       dispatch(register(userData, navigate));
-      navigate("/");
-
     }
   };
 
   useEffect(() => {
 
-    if (isSuccess && user) {
+    if (isSuccess) {
       navigate("/login");
     }
 

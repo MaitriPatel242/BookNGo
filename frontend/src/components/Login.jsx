@@ -41,6 +41,10 @@ const LoginForm = () => {
       toast.error(message);
     }
 
+    if(isSuccess){
+      navigate('/')
+    }
+
     dispatch(reset());
     dispatch(getUserInfo());
   }, [isError, isSuccess, user, navigate, dispatch]);
