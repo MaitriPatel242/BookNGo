@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { activate, reset } from './auth/authSlice'
+import { activate, reset } from '../features/auth/authSlice'
 
 const ActivationPage = () => {
 

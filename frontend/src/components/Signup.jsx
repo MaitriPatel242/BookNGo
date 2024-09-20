@@ -82,6 +82,7 @@ const SignUpForm = () => {
             <input
               id="firstName"
               onChange={handleChange}
+              name="first_name"
               value={first_name}
               type="text"
               className="w-full p-2 rounded-lg bg-white text-black focus:outline-none focus:ring-2 focus:ring-green-700"
@@ -97,6 +98,7 @@ const SignUpForm = () => {
             <input
               id="lastName"
               onChange={handleChange}
+              name="last_name"
               value={last_name}
               type="text"
               className="w-full p-2 rounded-lg bg-white text-black focus:outline-none focus:ring-2 focus:ring-green-700"
@@ -114,6 +116,7 @@ const SignUpForm = () => {
               onChange={handleChange}
               value={email}
               type="email"
+              name="email"
               className="w-full p-2 rounded-lg bg-white text-black focus:outline-none focus:ring-2 focus:ring-green-700"
               placeholder="Enter your email"
               required
@@ -129,6 +132,7 @@ const SignUpForm = () => {
               onChange={handleChange}
               value={password}
               type="password"
+              name="password"
               className="w-full p-2 rounded-lg bg-white text-black focus:outline-none focus:ring-2 focus:ring-green-700"
               placeholder="Enter your password"
               required
@@ -144,6 +148,7 @@ const SignUpForm = () => {
               onChange={handleChange}
               value={re_password}
               type="password"
+              name="re_password"
               className="w-full p-2 rounded-lg bg-white text-black focus:outline-none focus:ring-2 focus:ring-green-700"
               placeholder="Confirm your password"
               required

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BACKEND_DOMAIN = "http://127.0.0.1:8000/";
+const BACKEND_DOMAIN = "http://127.0.0.1:8000";
 const REGISTER_URL = `${BACKEND_DOMAIN}/auth/users/`;
 const LOGIN_URL = `${BACKEND_DOMAIN}/auth/jwt/create/`;
 const ACTIVATE_URL = `${BACKEND_DOMAIN}/auth/users/activation/`;

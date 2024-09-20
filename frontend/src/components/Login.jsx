@@ -76,6 +76,7 @@ const LoginForm = () => {
             <input
               id="email"
               type="email"
+              name="email"
               className="w-full p-2 rounded-lg bg-white text-black focus:outline-none focus:ring-2 focus:ring-green-700"
               placeholder="Enter your email"
               onChange={handleChange}
@@ -91,6 +92,7 @@ const LoginForm = () => {
             <input
               id="password"
               type="password"
+              name="password"
               className="w-full p-2 rounded-lg bg-white text-black focus:outline-none focus:ring-2 focus:ring-green-700"
               placeholder="Enter your password"
               onChange={handleChange}

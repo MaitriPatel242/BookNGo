@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
-import { resetPassword } from "./auth/authSlice";
+import { resetPassword } from "../features/auth/authSlice";
 
-const LoginPage = () => {
+const ResetPasswordPage = () => {
   const [formData, setFormData] = useState({
     email: "",
   });
@@ -81,4 +81,5 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default ResetPasswordPage;
+  
