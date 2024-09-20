@@ -13,7 +13,7 @@ import {
     MdStar,
 } from 'react-icons/md';
 import { IoVideocamOutline } from "react-icons/io5";
-import { LiaDollarSignSolid } from "react-icons/lia";
+import { LiaDollarSignSolid, LiaRupeeSignSolid } from "react-icons/lia";
 import { WiTime3 } from 'react-icons/wi';
 
 const responsive = {
@@ -47,7 +47,7 @@ const responsive = {
     }
 };
 
-export const Tours = ({ image, name, rating=5,price=59}) => {
+export const Tours = ({id, image, name, rating=5,price=59}) => {
     return (
         <div>
             <div className="relative overflow-hidden rounded-t-lg">
@@ -80,8 +80,8 @@ export const Tours = ({ image, name, rating=5,price=59}) => {
                         <p className="text-[#757783] text-md">Main Street, Brooklyn, NY</p>
                     </span>
                     <span className="text-[#757783] flex py-4 gap-2">
-                        <LiaDollarSignSolid className="text-green text-xl" /> From
-                        <p className="text-green">${price}.00</p>
+                        <LiaRupeeSignSolid className="text-green text-xl" /> From
+                        <p className="text-green">₹{price}.00</p>
                     </span>
                     <div className="flex justify-between border-t py-2">
                         <div className="flex items-center gap-4">
@@ -92,7 +92,7 @@ export const Tours = ({ image, name, rating=5,price=59}) => {
                                 <MdPeopleOutline className="text-green" />50
                             </span>
                         </div>
-                        <Link to="/booking" className="flex items-center gap-2 text-md">Explore <MdArrowRightAlt /></Link>
+                        <Link to={`/package/${id}`}  className="flex items-center gap-2 text-md">Explore <MdArrowRightAlt /></Link>
                     </div>
                 </div>
             </div>

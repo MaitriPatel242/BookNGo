@@ -2,15 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { FaStar } from "react-icons/fa";
 import Header from "./Header";
 import Footer from "./Footer";
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const Booking = () => {
-  const price = 1000; // Static price
-  const location = "New York, USA"; // Static location
-  const description = "A beautiful tour package to experience the vibrant culture and landscapes of New York.";
-  const title = "New York City Tour"; // Static title
-  const reviewsArray = [1, 2, 3]; // Static reviews array
-  const avgRating = 4.5; // Static average rating
-  const calculatedPrice = price * 1; // Static price calculation (1 person)
+  // const price = 1000; // Static price
+  // const location = "New York, USA"; // Static location
+  // const description = "A beautiful tour package to experience the vibrant culture and landscapes of New York.";
+  // const title = "New York City Tour"; // Static title
+  // const reviewsArray = [1, 2, 3]; // Static reviews array
+  // const avgRating = 4.5; // Static average rating
+  // const calculatedPrice = price * 1; // Static price calculation (1 person)
+
+  const { id } = useParams();
+  const [tour, setTour] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const [minDate, setMinDate] = useState('');
 
@@ -19,6 +26,34 @@ const Booking = () => {
     setMinDate(today);
   }, []);
 
+  useEffect(
+
+    () => {
+      const fetchPackages = async () => {
+        try {
+          const token = localStorage.getItem('user');
+
+          const response = await axios.get(`http://127.0.0.1:8000/api/packages/${id}`, {
+            // headers: {
+            //     Authorization: `Bearer ${token}`,
+            // }
+          });
+          setTour(response.data);
+          console.log(response.data);
+        } catch (err) {
+          setError(err.message);
+          // setModalVisible(true);
+        } finally {
+          setLoading(false);
+        }
+      }
+      fetchPackages();
+    }, [id])
+
+  if (!tour) {
+    return <div>Loading...</div>
+  }
+
   return (
     <>
       <Header />
@@ -26,14 +61,14 @@ const Booking = () => {
       <div className="min-h-screen bg-white flex flex-col items-center justify-center p-8">
         <div className="w-full max-w-6xl mx-auto flex flex-col lg:flex-row items-start space-y-10 lg:space-y-0 lg:space-x-10">
           <div className="w-full lg:w-1/2 h-auto flex flex-col items-start space-y-4">
-            <div className="w-full h-80 bg-gray-200 flex items-center justify-center rounded-lg">
-              <p className="text-gray-500">Image Placeholder (Upload your image here)</p>
+            <div className="w-90 bg-gray-200 flex items-center justify-center rounded-lg">
+              <p className="text-gray-500"><img src={tour.image} alt="" /></p>
             </div>
             <div className="space-y-2 text-left">
-              <h3 className="text-2xl font-bold text-gray-800">{title}</h3>
-              <p className="text-lg text-green"><strong>Location:</strong> {location}</p>
-              <p className="text-lg text-green"><strong>Price:</strong> Rs. {price}</p>
-              <p className="text-lg text-gray-600">{description}</p>
+              <h3 className="text-2xl font-bold text-gray-800 mt-5">{tour.name}</h3>
+              <p className="text-lg text-green"><strong>Location:</strong> {123}</p>
+              <p className="text-lg text-green"><strong>Price:</strong> Rs. {tour.price}</p>
+              <p className="text-lg text-gray-600">{tour.description}</p>
             </div>
           </div>
           <div className="w-full lg:w-1/2 bg-white p-8 rounded-lg shadow-lg border border-gray-300">
@@ -77,15 +112,15 @@ const Booking = () => {
               <div className="mt-12 font-semibold">
                 <div className="flex my-4 justify-between text-green">
                   <span>Gross Price: </span>
-                  <p className="font-semibold">Rs. {price}</p>
+                  <p className="font-semibold">Rs. {tour.price}</p>
                 </div>
                 <div className="flex text-green my-4 border-b-[1px] pb-2 border-gray-300 justify-between">
                   <span>GST: </span>
-                  <p className="font-semibold">0%</p>
+                  <p className="font-semibold">18%</p>
                 </div>
                 <div className="flex my-6 justify-between font-bold text-lg text-green">
                   <span>Net Price: </span>
-                  <p>Rs. {calculatedPrice}</p>
+                  <p>Rs. {tour.price * 1.18}</p>
                 </div>
               </div>
 

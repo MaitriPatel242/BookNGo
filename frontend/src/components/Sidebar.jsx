@@ -27,7 +27,7 @@ const cardData = [
 ];
 
 export default function Sidebar() {
-    const [value, setValue] = useState([109, 619]);
+    const [value, setValue] = useState([5000, 50000]);
 
     const Card = () => {
         return (
@@ -95,15 +95,15 @@ export default function Sidebar() {
                     <div className="w-full">
                         <h3 className="font-semibold mb-2">Price</h3>
                         <div className="flex justify-between mb-3">
-                            <div className="bg-green text-white px-2 rounded">${value[0]}</div>
-                            <div className="bg-green text-white px-2 rounded">${value[1]}</div>
+                            <div className="bg-green text-white px-2 rounded">₹{value[0]}</div>
+                            <div className="bg-green text-white px-2 rounded">₹{value[1]}</div>
                         </div>
                         <ReactSlider
                             className="horizontal-slider"
                             thumbClassName="thumb"
                             trackClassName="track"
-                            min={109}
-                            max={619}
+                            min={5000}
+                            max={50000}
                             value={value}
                             onChange={(value) => setValue(value)}
                             ariaLabel={["Lower thumb", "Upper thumb"]}

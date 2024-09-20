@@ -30,7 +30,7 @@ export default function App() {
         <Route path="/tours" element={<Tours />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
-        <Route path="/booking" element={<Booking />} />
+        <Route path="/package/:id" element={<Booking />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/activate/:uid/:token" element={<ActivationPage />} />

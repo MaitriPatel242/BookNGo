@@ -1,8 +1,10 @@
+import React, { useState, useMemo, useEffect } from 'react';
+import axios from 'axios';
 import { BsSortAlphaDown } from "react-icons/bs";
 import { RiPlanetLine } from "react-icons/ri";
 import CardSlider from "./CardSlider";
 import Sidebar from "./Sidebar";
-import { useState } from "react";
+// import { useState } from "react";
 import ReactPaginate from 'react-paginate';
 import { Tours } from "./Tour"
 
@@ -12,82 +14,126 @@ export default function Tour1() {
     const [sortAsc, setSortAsc] = useState(true)
     const [sortCriterion, setSortCriterion] = useState('name')
     const [currentPage, setcurrentPage] = useState(0);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const itemsPerPage = 6;
 
-    const tourData = [
-        {
-            image: "/tour-8-500x360.jpg",
-            name: "Discovery Island Kayak Tour",
-            rating: "4.5",
-            price: '109',
-        },
-        {
-            image: "/tour-6-500x360.jpg",
-            name: "Beautiful Floating Villa",
-            rating: "4.5",
-            price: '116'
-        },
-        {
-            image: "/tour-2-500x360.jpg",
-            name: "Yucatán Peninsula & Caribbean",
-            rating: "5",
-            price: '129'
-        },
-        {
-            image: "/tour-4-500x360.jpg",
-            name: "Man Standing on a Rock",
-            rating: "4.5",
-            price: '116'
-        },
-        {
-            image: "/tour-5-500x360.jpg",
-            name: "Cottages In The Middle Of Beach",
-            rating: "4.5",
-            price: '129'
-        },
-        {
-            image: "/tour-10-500x360.jpg",
-            name: "North Island Adventure Tour",
-            rating: "5",
-            price: '129'
-        },
-        {
-            image: "/tour-9-500x360.jpg",
-            name: "Java & Bali One Life Adventures",
-            rating: "4",
-            price: '129'
-        },
-        {
-            image: "/tour-1-500x360.jpg",
-            name: "Boathouse Neughborhood",
-            rating: "5",
-            price: '129'
-        },
-        {
-            image: "/tour-12-500x360.jpg",
-            name: "Walking The Amalfi Coast",
-            rating: "4.5",
-            price: '129'
-        },
-    ];
+    // const tourData = [
+    //     {
+    //         image: "/tour-8-500x360.jpg",
+    //         name: "Discovery Island Kayak Tour",
+    //         rating: "4.5",
+    //         price: '109',
+    //     },
+    //     {
+    //         image: "/tour-6-500x360.jpg",
+    //         name: "Beautiful Floating Villa",
+    //         rating: "4.5",
+    //         price: '116'
+    //     },
+    //     {
+    //         image: "/tour-2-500x360.jpg",
+    //         name: "Yucatán Peninsula & Caribbean",
+    //         rating: "5",
+    //         price: '129'
+    //     },
+    //     {
+    //         image: "/tour-4-500x360.jpg",
+    //         name: "Man Standing on a Rock",
+    //         rating: "4.5",
+    //         price: '116'
+    //     },
+    //     {
+    //         image: "/tour-5-500x360.jpg",
+    //         name: "Cottages In The Middle Of Beach",
+    //         rating: "4.5",
+    //         price: '129'
+    //     },
+    //     {
+    //         image: "/tour-10-500x360.jpg",
+    //         name: "North Island Adventure Tour",
+    //         rating: "5",
+    //         price: '129'
+    //     },
+    //     {
+    //         image: "/tour-9-500x360.jpg",
+    //         name: "Java & Bali One Life Adventures",
+    //         rating: "4",
+    //         price: '129'
+    //     },
+    //     {
+    //         image: "/tour-1-500x360.jpg",
+    //         name: "Boathouse Neughborhood",
+    //         rating: "5",
+    //         price: '129'
+    //     },
+    //     {
+    //         image: "/tour-12-500x360.jpg",
+    //         name: "Walking The Amalfi Coast",
+    //         rating: "4.5",
+    //         price: '129'
+    //     },
+    // ];
+    const [tourData, setPackages] = useState([])
+    useEffect(() => {
+        const fetchPackages = async () => {
+            try {
+                const token = localStorage.getItem('user');
 
+                const response = await axios.get('http://127.0.0.1:8000/api/packages/', {
+                    // headers: {
+                    //     Authorization: `Bearer ${token}`,
+                    // }
+                });
+                setPackages(response.data);
+                console.log(response.data);
+            } catch (err) {
+                setError(err.message);
+                // setModalVisible(true);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchPackages();
+    }, []);
     const handleSortChange = (event) => {
         setSortCriterion(event.target.value)
         setSortAsc(true);
     }
 
     const sortData = (data) => {
-        return data.sort((a, b) => {
-            if (sortCriterion === 'name') {
-                return sortAsc ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name);
-            } else if (sortCriterion === 'price') {
-                return sortAsc ? parseFloat(a.price) - parseFloat(b.price) : parseFloat(b.price) - parseFloat(a.price);
-            } else if (sortCriterion === 'rating') {
-                return sortAsc ? parseFloat(a.rating) - parseFloat(b.rating) : parseFloat(b.rating) - parseFloat(a.rating);
+        if (sortCriterion === 'name') {
+          // Sort alphabetically by tour name
+          return data.sort((a, b) => {
+            if (sortAsc) {
+              return a.name.localeCompare(b.name);
+            } else {
+              return b.name.localeCompare(a.name);
             }
-            return 0;
-        });
-    }
+          });
+        } else if (sortCriterion === 'price') {
+          // Sort by price (numerical comparison)
+          return data.sort((a, b) => {
+            if (sortAsc) {
+              return a.price - b.price;
+            } else {
+              return b.price - a.price;
+            }
+          });
+        } else if (sortCriterion === 'rating') {
+          // Sort by rating (numerical comparison)
+          return data.sort((a, b) => {
+            if (sortAsc) {
+              return a.rating - b.rating;
+            } else {
+              return b.rating - a.rating;
+            }
+          });
+        }
+        return data; // Return data as-is if no matching criterion
+      };
+      
 
     const sortedData = sortData([...tourData]);
     const offset = currentPage * itemsPerPage;
@@ -129,7 +175,7 @@ export default function Tour1() {
 
                     <div className="grid lg:grid-cols-2 grid-cols-1 gap-4">
                         {currentPageData?.map((item, index) => (
-                            <Tours key={index} image={item.image} name={item.name} rating={item.rating} price={item.price} />
+                            <Tours key={index} id={item.id} image={item.image} name={item.name} rating={item.rating} price={item.price} />
                         ))}
                     </div>
                     <ReactPaginate
