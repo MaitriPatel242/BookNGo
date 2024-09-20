@@ -10,6 +10,7 @@ import ActivationPage from './features/ActivationPage'
 import ResetPasswordPage from './features/ResetPasswordPage'
 import ResetPasswordPageConfirm from './features/ResetPasswordPageConfirm'
 import AOS from "aos";
+import Thankyou from "./components/Thankyou"
 import "aos/dist/aos.css";
 // import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements, } from "react-router-dom";
@@ -36,6 +37,8 @@ export default function App() {
         <Route path="/activate/:uid/:token" element={<ActivationPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="/password/reset/confirm/:uid/:token" element={<ResetPasswordPageConfirm />} />
+        <Route path="/thankyou" element={<Thankyou />} />
+        
       </>
     )
   );
