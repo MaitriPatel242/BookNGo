@@ -1,148 +1,19 @@
-// import React, { useState, useEffect } from 'react';
-// import { FaStar } from "react-icons/fa";
-// import Header from "./Header";
-// import Footer from "./Footer";
-// import { useParams } from 'react-router-dom';
-// import axios from 'axios';
-
-// const Booking = () => {
-  
-//   const { id } = useParams();
-//   const [tour, setTour] = useState(null);
-//   const [loading, setLoading] = useState(true);
-//   const [error, setError] = useState(null);
-
-//   const [minDate, setMinDate] = useState('');
-
-//   useEffect(() => {
-//     const today = new Date().toISOString().split('T')[0];
-//     setMinDate(today);
-//   }, []);
-
-//   useEffect(
-
-//     () => {
-//       const fetchPackages = async () => {
-//         try {
-//           const token = localStorage.getItem('user');
-
-//           const response = await axios.get(`http://127.0.0.1:8000/api/packages/${id}`, {
-//             // headers: {
-//             //     Authorization: `Bearer ${token}`,
-//             // }
-//           });
-//           setTour(response.data);
-//           console.log(response.data);
-//         } catch (err) {
-//           setError(err.message);
-//           // setModalVisible(true);
-//         } finally {
-//           setLoading(false);
-//         }
-//       }
-//       fetchPackages();
-//     }, [id])
-    
-//   if (!tour) {
-//     return <div>Loading...</div>
-//   }
-
-//   return (
-//     <>
-//       <Header />
-
-//       <div className="min-h-screen bg-white flex flex-col items-center justify-center p-8">
-//         <div className="w-full max-w-6xl mx-auto flex flex-col lg:flex-row items-start space-y-10 lg:space-y-0 lg:space-x-10">
-//           <div className="w-full lg:w-1/2 h-auto flex flex-col items-start space-y-4">
-//             <div className="w-90 bg-gray-200 flex items-center justify-center rounded-lg">
-//               <p className="text-gray-500"><img src={tour.image} alt="" /></p>
-//             </div>
-//             <div className="space-y-2 text-left">
-//               <h3 className="text-2xl font-bold text-gray-800 mt-5">{tour.name}</h3>
-//               <p className="text-lg text-green"><strong>Location:</strong> {123}</p>
-//               <p className="text-lg text-green"><strong>Price:</strong> Rs. {tour.price}</p>
-//               <p className="text-lg text-gray-600">{tour.description}</p>
-//             </div>
-//           </div>
-//           <div className="w-full lg:w-1/2 bg-white p-8 rounded-lg shadow-lg border border-gray-300">
-//             <h5 className="text-2xl font-bold text-green mb-6">Booking Information</h5>
-//             <form className="space-y-6">
-//               <div>
-//                 <input
-//                   className="w-full p-3 bg-gray-100 text-black border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-//                   type="text"
-//                   placeholder="Full Name"
-//                   required
-//                 />
-//               </div>
-//               <div>
-//                 <input
-//                   className="w-full p-3 bg-gray-100 text-black border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-//                   type="text"
-//                   placeholder="Contact No."
-//                   required
-//                 />
-//               </div>
-//               <div>
-//                 <input
-//                   className="w-full p-3 bg-gray-100 text-black border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-//                   type="number"
-//                   placeholder="Number of People"
-//                   defaultValue={1}
-//                   min={1}
-//                   required
-//                 />
-//               </div>
-//               <div>
-//                 <input
-//                   className="w-full p-3 bg-gray-100 text-black border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-//                   type="date"
-//                   required
-//                   min={minDate}
-//                 />
-//               </div>
-
-//               <div className="mt-12 font-semibold">
-//                 <div className="flex my-4 justify-between text-green">
-//                   <span>Gross Price: </span>
-//                   <p className="font-semibold">Rs. {tour.price}</p>
-//                 </div>
-//                 <div className="flex text-green my-4 border-b-[1px] pb-2 border-gray-300 justify-between">
-//                   <span>GST: </span>
-//                   <p className="font-semibold">18%</p>
-//                 </div>
-//                 <div className="flex my-6 justify-between font-bold text-lg text-green">
-//                   <span>Net Price: </span>
-//                   <p>Rs. {tour.price * 1.18}</p>
-//                 </div>
-//               </div>
-
-//               <button type="submit" className="btn w-full bg-green text-white h-10 font-bold rounded">
-//                 Book
-//               </button>
-//             </form>
-//           </div>
-//         </div>
-//       </div>
-//       <Footer />
-//     </>
-//   );
-// };
-
-// export default Booking;
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom'; // Added useNavigate
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Header from './Header';
 import Footer from './Footer';
 
 const Booking = () => {
   const { id } = useParams();
-  const navigate = useNavigate(); // Using navigate
+  const navigate = useNavigate();
   const [tour, setTour] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [minDate, setMinDate] = useState('');
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [userId, setUserId] = useState(null); // New state for user ID
 
   useEffect(() => {
     const today = new Date().toISOString().split('T')[0];
@@ -155,7 +26,7 @@ const Booking = () => {
         const response = await axios.get(`http://127.0.0.1:8000/api/packages/${id}`);
         setTour(response.data);
       } catch (err) {
-        setError(err.message);
+        setError("Failed to load the tour details. Please try again later.");
       } finally {
         setLoading(false);
       }
@@ -163,15 +34,49 @@ const Booking = () => {
     fetchTour();
   }, [id]);
 
-  const handleBooking = (event) => {
-    event.preventDefault();  // Prevent form submission
+  // Check user authentication and fetch user ID
+  useEffect(() => {
+    const token = localStorage.getItem('user');
+    if (token) {
+      const user = JSON.parse(localStorage.getItem('user')); // Assuming user object is stored
+      setUserId(user.id); // Extract user ID
+    }
+  }, []);
 
-    // Navigate to Thank You page with tour data
-    navigate('/thankyou', { state: { packageData: tour } });
+  const handleBooking = async (event) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+
+    const token = localStorage.getItem('user');
+
+    if (!token) {
+      setShowLoginModal(true);
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      const formData = new FormData(event.target);
+      const bookingData = Object.fromEntries(formData.entries());
+      bookingData.package_id = id;
+      bookingData.user_id = userId; // Add the user ID to the booking data
+
+      await axios.post('http://localhost:8000/bookings/', bookingData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      navigate('/thankyou', { state: { packageData: tour } });
+    } catch (error) {
+      console.error("Error while booking:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (error) return <div className="text-red-500">{error}</div>;
 
   return (
     <>
@@ -180,7 +85,12 @@ const Booking = () => {
         <div className="w-full max-w-6xl mx-auto flex flex-col lg:flex-row items-start space-y-10 lg:space-y-0 lg:space-x-10">
           <div className="w-full lg:w-1/2 h-auto flex flex-col items-start space-y-4">
             <div className="w-90 bg-gray-200 flex items-center justify-center rounded-lg">
-              <img src={tour.image} alt={tour.name} className="object-cover" />
+              <img
+                src={tour.image}
+                alt={tour.name}
+                className="object-cover"
+                onError={(e) => { e.target.src = '/path/to/fallback-image.jpg'; }} 
+              />
             </div>
             <div className="space-y-2 text-left">
               <h3 className="text-2xl font-bold text-gray-800 mt-5">{tour.name}</h3>
@@ -192,23 +102,25 @@ const Booking = () => {
           <div className="w-full lg:w-1/2 bg-white p-8 rounded-lg shadow-lg border border-gray-300">
             <h5 className="text-2xl font-bold text-green mb-6">Booking Information</h5>
 
-            {/* Form with onSubmit event */}
             <form className="space-y-6" onSubmit={handleBooking}>
               <input
                 className="w-full p-3 bg-gray-100 text-black border border-gray-300 rounded-lg"
                 type="text"
+                name="full_name"
                 placeholder="Full Name"
                 required
               />
               <input
                 className="w-full p-3 bg-gray-100 text-black border border-gray-300 rounded-lg"
                 type="text"
+                name="contact"
                 placeholder="Contact No."
                 required
               />
               <input
                 className="w-full p-3 bg-gray-100 text-black border border-gray-300 rounded-lg"
                 type="number"
+                name="people"
                 placeholder="Number of People"
                 defaultValue={1}
                 min={1}
@@ -217,6 +129,7 @@ const Booking = () => {
               <input
                 className="w-full p-3 bg-gray-100 text-black border border-gray-300 rounded-lg"
                 type="date"
+                name="date"
                 required
                 min={minDate}
               />
@@ -232,18 +145,43 @@ const Booking = () => {
                 </div>
                 <div className="flex my-6 justify-between font-bold text-lg text-green">
                   <span>Net Price: </span>
-                  <p>Rs. {tour.price * 1.18}</p>
+                  <p>Rs. {(tour.price * 1.18).toFixed(2)}</p>
                 </div>
               </div>
 
-              {/* Submit button will trigger form submission and navigate */}
-              <button type="submit" className="btn w-full bg-green text-white h-10 font-bold rounded">
-                Book
+              <button
+                type="submit"
+                className="btn w-full bg-green text-white h-10 font-bold rounded"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Booking..." : "Book"}
               </button>
             </form>
           </div>
         </div>
       </div>
+
+      {showLoginModal && (
+        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-8 rounded-lg shadow-lg">
+            <h2 className="text-xl font-bold text-red-500">Please log in to proceed with booking</h2>
+            <div className="flex justify-end mt-4 space-x-4">
+              <button
+                className="btn bg-green-500 text-white px-4 py-2 rounded"
+                onClick={() => navigate('/login')}
+              >
+                Go to Login
+              </button>
+              <button
+                className="btn bg-gray-500 text-white px-4 py-2 rounded"
+                onClick={() => setShowLoginModal(false)}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       <Footer />
     </>
   );

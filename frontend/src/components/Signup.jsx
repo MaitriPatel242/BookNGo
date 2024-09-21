@@ -1,9 +1,9 @@
-
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { register, reset, logout } from "../features/auth/authSlice";
+import { register, reset } from "../features/auth/authSlice";
 import { useNavigate, Link } from "react-router-dom";
-
+import { PulseLoader } from "react-spinners"; // Optional: Use react-spinners or any similar package
+import { toast } from "react-toastify";
 
 const SignUpForm = () => {
   const [formData, setFormData] = useState({
@@ -33,29 +33,29 @@ const SignUpForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password !== re_password) {
+      toast.error("Passwords do not match!");
     } else {
       const userData = {
         email,
         password,
         first_name,
         last_name,
-        re_password
       };
-      console.log("SIGNUP")
-      console.log(userData)
-      dispatch(register(userData, navigate));
+      dispatch(register(userData));
     }
   };
 
   useEffect(() => {
+    if (isError) {
+      toast.error(message); // Show error message in toast notification
+    }
 
     if (isSuccess) {
       navigate("/login");
     }
 
     dispatch(reset());
-  }, [isError, isSuccess, user, dispatch]);
-
+  }, [isError, isSuccess, user, message, dispatch, navigate]);
 
   return (
     <div
@@ -75,6 +75,13 @@ const SignUpForm = () => {
       {/* Sign up form */}
       <div className="relative bg-green text-white p-6 md:p-8 rounded-lg shadow-lg w-full max-w-md z-10">
         <h2 className="text-2xl md:text-3xl font-bold mb-4 text-center">Sign Up</h2>
+
+        {/* Error message */}
+        {isError && (
+          <div className="text-red-500 text-center mb-4 font-semibold">
+            {message}
+          </div>
+        )}
 
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
@@ -159,15 +166,22 @@ const SignUpForm = () => {
 
           <br />
 
-          <button
-            type="submit"
-            className="w-full py-4 bg-white text-green text-2xl font-bold rounded-lg hover:bg-gray-100 transition duration-300"
-          >
-            Signup
-          </button>
+          {/* Loading spinner or submit button */}
+          {isLoading ? (
+            <div className="flex justify-center my-4">
+              <PulseLoader color="white" size={10} />
+            </div>
+          ) : (
+            <button
+              type="submit"
+              className="w-full py-4 bg-white text-green text-2xl font-bold rounded-lg hover:bg-gray-100 transition duration-300"
+            >
+              Signup
+            </button>
+          )}
 
           <p className="text-center mt-4">
-            Already have an account?{' '}
+            Already have an account?{" "}
             <Link to="/login" className="text-white underline hover:text-gray-200">
               Log In
             </Link>

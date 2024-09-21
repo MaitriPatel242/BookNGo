@@ -110,7 +110,7 @@ export default function Footer() {
                 </div>
             </div>
             <div className="bg-black text-gray-400 py-4 text-center text-sm">
-                © 2023 Copyrights by Gowilds. All Rights Reserved
+                © 2024 Copyrights by BookNGo. All Rights Reserved
             </div>
         </footer>
     );

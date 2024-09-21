@@ -33,7 +33,7 @@ export default function Header() {
                 <div className="lg:w-full w-11/12 mx-auto h-full flex lg:justify-around justify-between items-center gap-16">
                     <div className="flex flex-col gap-y-4">
                         <div className="flex items-center gap-x-2">
-                            <img src="/logo.png" alt="Logo" className="w-36" />
+                            <img src="/logo-white.png" alt="Logo" className="w-36" />
                         </div>
                     </div>
                     <ul className="flex items-center xl:gap-12 gap-x-4 max-lg:hidden">
@@ -55,9 +55,9 @@ export default function Header() {
                             <button className="rounded-full text-white w-10 h-10 flex items-center justify-center hover:text-green" onClick={handleLogout}>
                                 <CiLogout size={32} />
                             </button>
-                            <button className="rounded-full text-white w-10 h-10 flex items-center justify-center hover:bg-green hover:text-white">
+                            {/* <button className="rounded-full text-white w-10 h-10 flex items-center justify-center hover:bg-green hover:text-white">
                                 <BsPersonCircle size={24} />
-                            </button>
+                            </button> */}
                         </div> :
                         <div className="flex gap-4 items-center">
                             <Link to="/login">
@@ -101,9 +101,9 @@ export default function Header() {
                                 </NavLink>
                                 {Is_LoggedIn ?
                                     <>
-                                        <NavLink onClick={logout} className="leading-normal no-underline text-white text-lg hover:text-green">
+                                        {/* <NavLink onClick={logout} className="leading-normal no-underline text-white text-lg hover:text-green">
                                             Profile
-                                        </NavLink>
+                                        </NavLink> */}
                                         <NavLink className="leading-normal no-underline text-white text-lg hover:text-green">
                                             Logout
                                         </NavLink>

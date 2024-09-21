@@ -4,7 +4,6 @@ from .views import (
     DestinationListCreateView, DestinationRetrieveUpdateDestroyView,
     PackageListCreateView, PackageRetrieveUpdateDestroyView,
     BookingListCreateView, BookingRetrieveUpdateDestroyView,
-    PackageReviewListCreateView, PackageReviewRetrieveUpdateDestroyView
 )
 
 urlpatterns = [
@@ -23,6 +22,4 @@ urlpatterns = [
     path('bookings/', BookingListCreateView.as_view(), name='booking-list-create'),
     path('bookings/<int:pk>/', BookingRetrieveUpdateDestroyView.as_view(), name='booking-detail'),
 
-    path('reviews/', PackageReviewListCreateView.as_view(), name='review-list-create'),
-    path('reviews/<int:pk>/', PackageReviewRetrieveUpdateDestroyView.as_view(), name='review-detail'),
 ]

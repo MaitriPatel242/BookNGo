@@ -104,19 +104,3 @@ class Booking(models.Model):
     def __str__(self):
         return f"Booking {self.id} for {self.user_id}"
     
-
-class PackageReview(models.Model):
-    package_id = models.ForeignKey(Package, on_delete=models.CASCADE)
-    user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    review = models.TextField()
-    rating = models.FloatField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    is_active = models.BooleanField(default=True)
-    
-    class Meta:
-        verbose_name = _("PackageReview")
-        verbose_name_plural = _("PackageReviews")
-
-    def __str__(self):
-        return f"Review {self.id} for Package {self.pack_id} by User {self.user_id}"

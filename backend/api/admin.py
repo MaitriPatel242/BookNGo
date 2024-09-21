@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from .forms import CustomUserChangeForm, CustomUserCreationForm
 from django.contrib import admin
 from .models import User
-from .models import Destination,UserProfile, Package, Booking,  PackageReview
+from .models import Destination,UserProfile, Package, Booking
 
 class UserAdmin(BaseUserAdmin): 
     ordering = ["email"]
@@ -79,10 +79,3 @@ class BookingAdmin(admin.ModelAdmin):
     search_fields = ('user_id__email', 'package_id__name',)
     list_filter = ('start_date', 'is_active')
 
-
-# Registering the PackageReview model
-@admin.register(PackageReview)
-class PackageReviewAdmin(admin.ModelAdmin):
-    list_display = ('package_id', 'user_id', 'rating', 'is_active', 'created_at')
-    search_fields = ('package_id__name', 'user_id__email', 'rating')
-    list_filter = ('rating', 'is_active')

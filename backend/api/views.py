@@ -1,13 +1,12 @@
 from rest_framework import generics
-from .models import User,UserProfile, Destination, Package, Booking, PackageReview
+from .models import User,UserProfile, Destination, Package, Booking
 from .serializers import (
-    UserProfileSerializer, DestinationSerializer, PackageSerializer,  BookingSerializer,  PackageReviewSerializer, CreateUserSerializer
+    UserProfileSerializer, DestinationSerializer, PackageSerializer,  BookingSerializer,  CreateUserSerializer
 )
 
 class UserListCreateView(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = CreateUserSerializer
-
 
 class UserRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
@@ -48,11 +47,4 @@ class BookingRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Booking.objects.all()
     serializer_class = BookingSerializer
 
-# Package Review Views
-class PackageReviewListCreateView(generics.ListCreateAPIView):
-    queryset = PackageReview.objects.all()
-    serializer_class = PackageReviewSerializer
 
-class PackageReviewRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = PackageReview.objects.all()
-    serializer_class = PackageReviewSerializer

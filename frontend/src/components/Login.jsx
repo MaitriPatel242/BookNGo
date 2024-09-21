@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login, reset, getUserInfo } from "../features/auth/authSlice";
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
-
+import { PulseLoader } from "react-spinners"; // Optional: You can use react-spinners or similar
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({
@@ -38,20 +38,16 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (isError) {
-      toast.error(message);
+      toast.error(message); // Error toast for better UX
     }
 
-    if(isSuccess){
-      navigate('/')
+    if (isSuccess) {
+      navigate("/");
     }
 
     dispatch(reset());
     dispatch(getUserInfo());
   }, [isError, isSuccess, user, navigate, dispatch]);
-
-
-
-
 
   return (
     <div
@@ -70,11 +66,23 @@ const LoginForm = () => {
 
       {/* Login form */}
       <div className="relative bg-green text-white p-6 md:p-8 rounded-lg shadow-lg w-full max-w-md z-10">
-        <h2 className="text-2xl md:text-3xl font-bold mb-4 text-center">Log In</h2>
+        <h2 className="text-2xl md:text-3xl font-bold mb-4 text-center">
+          Log In
+        </h2>
 
-        <form>
+        {/* Error message (inline) */}
+        {isError && (
+          <div className="text-red-500 text-center mb-4 font-semibold">
+            {message}
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label className="block text-lg font-semibold mb-1" htmlFor="email">
+            <label
+              className="block text-lg font-semibold mb-1"
+              htmlFor="email"
+            >
               Email
             </label>
             <input
@@ -90,7 +98,10 @@ const LoginForm = () => {
           </div>
 
           <div className="mb-3">
-            <label className="block text-lg font-semibold mb-1" htmlFor="password">
+            <label
+              className="block text-lg font-semibold mb-1"
+              htmlFor="password"
+            >
               Password
             </label>
             <input
@@ -104,25 +115,33 @@ const LoginForm = () => {
               required
             />
           </div>
+
           <div className="flex justify-end">
-              <Link
-                to="/reset-password"
-                className="text-md bg-green text-[white] hover:underline"
-              >
-                Forgot password?
-              </Link>
+            <Link
+              to="/reset-password"
+              className="text-md bg-green text-[white] hover:underline"
+            >
+              Forgot password?
+            </Link>
+          </div>
+          <br />
+          
+          {/* Loading spinner */}
+          {isLoading ? (
+            <div className="flex justify-center my-4">
+              <PulseLoader color="white" size={10} /> {/* Optional spinner */}
             </div>
-          <br></br>
-          <button
-            type="submit"
-            onClick={handleSubmit} 
-            className="w-full py-4 bg-white text-green text-2xl font-bold rounded-lg hover:bg-gray-100 transition duration-300"
-          >
-            Log in
-          </button>
+          ) : (
+            <button
+              type="submit"
+              className="w-full py-4 bg-white text-green text-2xl font-bold rounded-lg hover:bg-gray-100 transition duration-300"
+            >
+              Log in
+            </button>
+          )}
 
           <p className="text-center mt-4">
-            Don't have an account?{' '}
+            Don't have an account?{" "}
             <Link to="/signup" className="text-white underline hover:text-gray-200">
               Sign Up
             </Link>
