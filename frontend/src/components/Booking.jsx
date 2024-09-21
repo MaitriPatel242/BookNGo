@@ -13,13 +13,16 @@ const Booking = () => {
   const [minDate, setMinDate] = useState('');
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [userId, setUserId] = useState(null); // New state for user ID
+  const [submitError, setSubmitError] = useState(''); // Error message for submission
+  const [userId, setUserId] = useState(null);
 
+  // Set minimum date for booking date input
   useEffect(() => {
     const today = new Date().toISOString().split('T')[0];
     setMinDate(today);
   }, []);
 
+  // Fetch the tour details
   useEffect(() => {
     const fetchTour = async () => {
       try {
@@ -38,41 +41,16 @@ const Booking = () => {
   useEffect(() => {
     const token = localStorage.getItem('user');
     if (token) {
-      const user = JSON.parse(localStorage.getItem('user')); // Assuming user object is stored
-      setUserId(user.id); // Extract user ID
+      const user = JSON.parse(localStorage.getItem('user'));
+      setUserId(user.id);
     }
   }, []);
 
   const handleBooking = async (event) => {
     event.preventDefault();
-    setIsSubmitting(true);
 
-    const token = localStorage.getItem('user');
+    navigate('/thankyou', { state: { packageData: tour } });
 
-    if (!token) {
-      setShowLoginModal(true);
-      setIsSubmitting(false);
-      return;
-    }
-
-    try {
-      const formData = new FormData(event.target);
-      const bookingData = Object.fromEntries(formData.entries());
-      bookingData.package_id = id;
-      bookingData.user_id = userId; // Add the user ID to the booking data
-
-      await axios.post('http://localhost:8000/bookings/', bookingData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      navigate('/thankyou', { state: { packageData: tour } });
-    } catch (error) {
-      console.error("Error while booking:", error);
-    } finally {
-      setIsSubmitting(false);
-    }
   };
 
   if (loading) return <div>Loading...</div>;
@@ -89,7 +67,7 @@ const Booking = () => {
                 src={tour.image}
                 alt={tour.name}
                 className="object-cover"
-                onError={(e) => { e.target.src = '/path/to/fallback-image.jpg'; }} 
+                onError={(e) => { e.target.src = '/path/to/fallback-image.jpg'; }}
               />
             </div>
             <div className="space-y-2 text-left">
@@ -149,12 +127,16 @@ const Booking = () => {
                 </div>
               </div>
 
+              {submitError && (
+                <p className="text-red-500 font-semibold">{submitError}</p>
+              )}
+
               <button
                 type="submit"
                 className="btn w-full bg-green text-white h-10 font-bold rounded"
-                disabled={isSubmitting}
+
               >
-                {isSubmitting ? "Booking..." : "Book"}
+                Book
               </button>
             </form>
           </div>
