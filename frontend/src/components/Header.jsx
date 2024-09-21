@@ -1,23 +1,29 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { CiLogout, CiSearch } from "react-icons/ci";
 import { BsPersonCircle } from "react-icons/bs";
 import { MdClose } from "react-icons/md";
 import { HiMenuAlt3 } from "react-icons/hi";
-import { NavLink } from "react-router-dom"; // Ensure this is correctly imported
-import { Link } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom';
 import { logout } from "../features/auth/authSlice";
+
 
 export default function Header() {
     const [dropdown, setDropdown] = useState(false);
     const [Is_LoggedIn, setLoggedIn] = useState(localStorage.getItem("user"))
 
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const showDropdown = () => {
         setDropdown(!dropdown);
     };
 
-    const handleLogout = () =>{
-        logout();
+    const handleLogout = () => {
+        dispatch(logout())
         setLoggedIn(localStorage.getItem("user"))
+        navigate('/login')
     }
 
 
