@@ -27,7 +27,7 @@ export default function Header() {
                 <div className="lg:w-full w-11/12 mx-auto h-full flex lg:justify-around justify-between items-center gap-16">
                     <div className="flex flex-col gap-y-4">
                         <div className="flex items-center gap-x-2">
-                            <img src="/logo.png" alt="Logo" className="w-36" />
+                            <img src="/logo-white.png" alt="Logo" className="w-36" />
                         </div>
                     </div>
                     <ul className="flex items-center xl:gap-12 gap-x-4 max-lg:hidden">

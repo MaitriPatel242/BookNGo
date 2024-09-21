@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { register, reset, logout } from "../features/auth/authSlice";
 import { useNavigate, Link } from "react-router-dom";
+import Header from "./Header";
+import Footer from "./Footer";
+
 
 
 const SignUpForm = () => {
@@ -60,6 +63,8 @@ const SignUpForm = () => {
 
 
   return (
+    <>
+    <Header/>
     <div
       className="min-h-screen bg-cover bg-center flex items-center justify-center relative"
       style={{
@@ -177,6 +182,8 @@ const SignUpForm = () => {
         </form>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 };
 

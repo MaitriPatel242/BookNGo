@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { login, reset, getUserInfo } from "../features/auth/authSlice";
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from "react-toastify";
+import Header from "./Header";
+import Footer from "./Footer";
 
 
 const LoginForm = () => {
@@ -50,6 +52,9 @@ const LoginForm = () => {
 
 
   return (
+    <>
+    <Header/>
+
     <div
       className="min-h-screen bg-cover bg-center flex items-center justify-center relative"
       style={{
@@ -126,6 +131,8 @@ const LoginForm = () => {
         </form>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 };
 

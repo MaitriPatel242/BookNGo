@@ -91,9 +91,9 @@ export default function Hero() {
         return (
             <div className="relative group overflow-hidden rounded-[10px] shadow-lg">
                 <img src={image} alt={country} className="w-full h-[350px] object-cover rounded-[10px] transition-transform duration-700 ease-in-out group-hover:scale-125" />
-                <span className="bg-orange rounded-lg px-5 text-white text-xs absolute top-5 right-5 uppercase font-bold leading-8 whitespace-pre">3 Tours</span>
+                <span className="bg-orange rounded-lg px-5 text-white text-xs absolute top-5 right-5 uppercase font-bold leading-8 whitespace-pre">4 Tours</span>
                 <div className="absolute bottom-0 w-full bg-black bg-opacity-50 py-5 flex flex-col items-center justify-center transition-all duration-300 group-hover:bg-opacity-100">
-                    <p className="text-green text-xl font-bold text-center flex flex-col">Travel to <span className="text-white text-2xl text-center group-hover:text-white-800">{country}</span></p>
+                    <p className="text-green text-xl font-bold text-center flex flex-col">Visit <span className="text-white text-2xl text-center group-hover:text-white-800">{country}</span></p>
                     <div className="absolute -top-5 right-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                         <button className="bg-orange text-white p-2 rounded-full">
                             <IoArrowForward className="text-xl"></IoArrowForward>
@@ -109,23 +109,23 @@ export default function Hero() {
                 <img src="/slider-1.jpg" alt="" className="absolute h-full w-full object-cover" />
                 <div className="flex flex-col justify-center items-center relative z-10 lg:h-full h-screen max-w-[1320px] px-6 lg:pt-0 pt-16 mx-auto">
                     <span className="lg:text-5xl text-3xl text-white text-center font-bold relative">
-                        Where Would You Like To Go?
+                        Your Next Adventure Awaits
                         <div className="bg-orange text-white text-lg -left-8 px-8 py-1 w-fit absolute -top-8 z-10 -rotate-[10deg]">
-                            Let's Explore
+                            Let's Travel
                         </div>
                     </span>
                     <p className="text-white text-center text-2xl my-8">
-                        Checkout Beautiful Places Around The World.
+                        Discover the best travel destinations around the globe.
                     </p>
                     <div className="bg-white p-6 rounded-lg shadow-lg lg:flex items-center justify-between w-full">
                         <div className="flex items-center w-full lg:py-2 pr-4 mr-4">
                             <MdOutlineParagliding className="text-green text-3xl mr-2" />
                             <div className="flex flex-col w-full">
                                 <p className="text-gray-600 text-sm">
-                                    Location
+                                    Destination
                                 </p>
                                 <select className="focus:outline-none">
-                                    <option value="">Locations</option>
+                                    <option value="">Select Location</option>
                                 </select>
                             </div>
                         </div>
@@ -133,10 +133,10 @@ export default function Hero() {
                             <FaPeopleCarry className="text-green text-3xl mr-2" />
                             <div className="flex flex-col w-full">
                                 <p className="text-gray-600 text-sm">
-                                    Type
+                                    Tour Type
                                 </p>
                                 <select className="focus:outline-none">
-                                    <option value="">Booking Type</option>
+                                    <option value="">Select Type</option>
                                 </select>
                             </div>
                         </div>
@@ -144,7 +144,7 @@ export default function Hero() {
                             <AiOutlineCalendar className="text-green text-3xl mr-2" />
                             <div className="flex flex-col w-full">
                                 <p className="text-gray-600 text-sm">
-                                    Date from
+                                    Start Date
                                 </p>
                                 <input type="date" className="focus:outline-none" />
                             </div>
@@ -161,12 +161,12 @@ export default function Hero() {
                         <div className="flex items-center mr-4 lg:mt-0 mt-4">
                             <IoMdOptions className="lg:block hidden text-green text-3xl mr-2 " />
                             <button className="bg-green text-white flex items-center justify-center gap-4 px-4 py-3 outline-none border-none rounded-lg font-semibold text-sm w-full">
-                                <MdSearch size={20} /> SEARCH
+                                <MdSearch size={20} /> SEARCH TOURS
                             </button>
                         </div>
                     </div>
                     <img src="/line-arrow.png" alt="" className="lg:block hidden my-4 -ml-96 " />
-                    <p className="text-white font-semibold lg:text-3xl text-xl lg:py-0 py-8">Or browse the selected type</p>
+                    <p className="text-white font-semibold lg:text-3xl text-xl lg:py-0 py-8">Or choose by tour category</p>
                 </div>
             </section>
 
@@ -178,7 +178,6 @@ export default function Hero() {
                         afterChange={handleAfterChange}
                         autoPlay={true}
                         itemClass="px-2"
-                    // afterChange={(previousSlide, { currentSlide }) => setCurrentSlide(currentSlide)}
                     >
                         {type.map((item, index) => (
                             <div key={index} className="group">
@@ -204,7 +203,7 @@ export default function Hero() {
                                     <p className={`${currentSlide % type.length === index ?
                                         'text-white' :
                                         'text-green group-hover:text-white'}`}>
-                                        Lorem ipsum dolor sit amet.
+                                        Explore the best tour experiences.
                                     </p>
                                 </div>
                             </div>
@@ -214,27 +213,24 @@ export default function Hero() {
 
                 <div className="max-w-[1320px] mx-auto pt-24">
                     <div className="py-16">
-                        <div className="flex flex-col items-center">
-                            <div className="relative w-fit px-8 py-2 flex items-center justify-center">
-                                <span className="bg-green rounded-md opacity-15 absolute w-full h-full z-10"></span>
-                                <h6 className="text-green relative font-semibold">Popular activities</h6>
-                            </div>
-                            <h3 className="lg:text-5xl text-3xl text-center font-bold pb-8 py-4">Explore Real Adventure</h3>
+                        <div className="flex justify-between lg:flex-row flex-col mb-8">
+                            <h2 className="text-green font-bold lg:text-4xl text-3xl">Explore New Destinations</h2>
+                            <a href="" className="flex items-center gap-2 text-lg">
+                                View all tours <IoMdArrowForward />
+                            </a>
                         </div>
-
-                        <div className="relative z-10 px-6 py-8">
-                            <Carousel
-                                responsive={responsive}
-                                infinite
-                                autoPlay={true}
-                                itemClass="px-2 pb-6"
-                            >
-                                <Explore country="United Kingdom" image="/image-01.jpg" />
-                                <Explore country="France" image="/image-02.jpg" />
-                                <Explore country="Singapore" image="/image-03.jpg" />
-                                <Explore country="Thailand" image="/image-04.jpg" />
-                            </Carousel>
-                        </div>
+                        <Carousel
+                            responsive={responsive}
+                            infinite
+                            autoPlay={true}
+                            afterChange={handleAfterChange}
+                            itemClass="px-4"
+                        >
+                            <Explore country="Italy" image="/explore-1.jpg" />
+                            <Explore country="Brazil" image="/explore-2.jpg" />
+                            <Explore country="Iceland" image="/explore-3.jpg" />
+                            <Explore country="Japan" image="/explore-4.jpg" />
+                        </Carousel>
                     </div>
                 </div>
             </section>
