@@ -7,8 +7,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        green: "#63AB45",
-        orange: "#F7921E",
+        green: "#F7921E",
+        orange:"#63AB45",
       },
       boxShadow: {
         'xl': "0p 10px 60px 0px rgba(0,0,0,0.15)",

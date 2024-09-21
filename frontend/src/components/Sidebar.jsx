@@ -31,7 +31,7 @@ export default function Sidebar({ onPriceFilter }) {
                             renderTrack={(props, state) => {
                                 const { index } = state;
                                 const { key, ...restProps } = props;
-                                const trackStyle = index === 1 ? { backgroundColor: '#63ab45' } : { backgroundColor: '#999' };
+                                const trackStyle = index === 1 ? { backgroundColor: "#63AB45" } : { backgroundColor: '#999' };
                                 return (
                                     <div key={key} {...restProps} style={{ ...restProps.style, ...trackStyle }} />
                                 );
@@ -39,7 +39,7 @@ export default function Sidebar({ onPriceFilter }) {
                             renderThumb={(props, state) => {
                                 const { key, ...restProps } = props;
                                 return(
-                                    <div key={key} {...restProps} style={{ ...restProps.style, backgroundColor: '#63ab45', borderRadius: '50%', width: '20px', height: '20px' }} />
+                                    <div key={key} {...restProps} style={{ ...restProps.style, backgroundColor: "#63AB45", borderRadius: '50%', width: '20px', height: '20px' }} />
                                 );
                             }}
                         />

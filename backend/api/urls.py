@@ -4,7 +4,7 @@ from .views import (
     DestinationListCreateView, DestinationRetrieveUpdateDestroyView,
     PackageListCreateView, PackageRetrieveUpdateDestroyView,
     BookingListCreateView, BookingRetrieveUpdateDestroyView,
-    PackageReviewListCreateView, PackageReviewRetrieveUpdateDestroyView
+    PackageReviewListCreateView, PackageReviewRetrieveUpdateDestroyView,contact_form
 )
 
 urlpatterns = [
@@ -25,4 +25,6 @@ urlpatterns = [
 
     path('reviews/', PackageReviewListCreateView.as_view(), name='review-list-create'),
     path('reviews/<int:pk>/', PackageReviewRetrieveUpdateDestroyView.as_view(), name='review-detail'),
+
+     path('contact/', contact_form, name='contact_form'),
 ]
